@@ -85,6 +85,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="z2k-6O-407"/>
                     <connections>
+                        <outlet property="startButton" destination="ogK-bB-CNq" id="Fon-DH-I2L"/>
                         <outlet property="videoView" destination="esF-bs-WXj" id="3M9-Xe-myw"/>
                     </connections>
                 </viewController>

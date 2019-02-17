@@ -17,10 +17,12 @@
 @property(nonatomic, strong) AVCaptureDeviceInput *captureDeviceInput;
 @property(nonatomic, strong) AVCaptureVideoDataOutput *captureDeviceDataOutput;
 
-@property (weak, nonatomic) IBOutlet UIView *videoView;
-
 @property(nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
 
+@property(nonatomic, assign) BOOL isCapturing; //是否已经在采集
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+
+@property (weak, nonatomic) IBOutlet UIView *videoView;
 @end
 
 @implementation ViewController
@@ -28,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self settingSession];
+    [self.startButton setTitle:@"停止" forState:UIControlStateSelected];
 }
 
 - (void)settingSession{
@@ -94,8 +97,11 @@
     
     CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 200);
     self.previewLayer.frame = frame;
+    
+   NSLog(@"%@", NSStringFromCGPoint( [self.previewLayer captureDevicePointOfInterestForPoint:CGPointMake(200, 200)])); //获取屏幕坐标 转成设备坐标
+   NSLog(@"%@", NSStringFromCGPoint([self.previewLayer pointForCaptureDevicePointOfInterest:CGPointMake(0.5, 0.4)]));  //获取设置坐标  转换屏幕坐标
+    
     [self.videoView.layer  addSublayer:self.previewLayer];
-    [self.captureSession startRunning];
 }
 
 - (IBAction)presetAction:(id)sender { //分辨率
@@ -108,8 +114,33 @@
     [self reverseCamera];
 }
 
-- (IBAction)startAction:(id)sender { //开始结束
+- (IBAction)startAction:(UIButton *)sender { //开始结束
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self startCapture];
+    } else {
+        [self stopCapture];
+    }
 }
+
+- (void)startCapture{ //开始采集
+    if (self.isCapturing) {
+        return;
+    }
+    [self.captureSession startRunning];
+    self.isCapturing = YES;
+}
+
+- (void)stopCapture{
+    if (!self.isCapturing) {
+        return;
+    }
+    
+    [self.captureSession stopRunning];
+    self.isCapturing = NO;
+}
+
+
 
 //设置帧率
 - (NSError *)adjustFrameRate:(NSInteger)frameRate{
@@ -174,6 +205,10 @@
     
     return error;
 }
+
+
+
+
 
 #pragma mark -- Delegate --
 

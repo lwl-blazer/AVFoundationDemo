@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E20E52A221861C9000E7773 /* NSTimer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E20E525221861C9000E7773 /* NSTimer+Additions.m */; };
+		8E20E52B221861C9000E7773 /* UIView+THAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E20E526221861C9000E7773 /* UIView+THAdditions.m */; };
+		8E20E52C221861C9000E7773 /* NSFileManager+THAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E20E528221861C9000E7773 /* NSFileManager+THAdditions.m */; };
+		8E2B9D5322185E9E0095B2B3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B9D4E22185E9D0095B2B3 /* ViewController.m */; };
+		8E2B9D5422185E9E0095B2B3 /* CameraHandleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B9D5222185E9D0095B2B3 /* CameraHandleObject.m */; };
 		8E35687C221455E800CC7A02 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E35687B221455E800CC7A02 /* AppDelegate.m */; };
-		8E35687F221455E800CC7A02 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E35687E221455E800CC7A02 /* ViewController.m */; };
 		8E356882221455E800CC7A02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E356880221455E800CC7A02 /* Main.storyboard */; };
 		8E356884221455E900CC7A02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E356883221455E900CC7A02 /* Assets.xcassets */; };
 		8E356887221455E900CC7A02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E356885221455E900CC7A02 /* LaunchScreen.storyboard */; };
@@ -35,11 +39,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E20E524221861C9000E7773 /* NSFileManager+THAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+THAdditions.h"; sourceTree = "<group>"; };
+		8E20E525221861C9000E7773 /* NSTimer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Additions.m"; sourceTree = "<group>"; };
+		8E20E526221861C9000E7773 /* UIView+THAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+THAdditions.m"; sourceTree = "<group>"; };
+		8E20E527221861C9000E7773 /* UIView+THAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+THAdditions.h"; sourceTree = "<group>"; };
+		8E20E528221861C9000E7773 /* NSFileManager+THAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+THAdditions.m"; sourceTree = "<group>"; };
+		8E20E529221861C9000E7773 /* NSTimer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Additions.h"; sourceTree = "<group>"; };
+		8E2B9D4E22185E9D0095B2B3 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8E2B9D4F22185E9D0095B2B3 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8E2B9D5122185E9D0095B2B3 /* CameraHandleObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraHandleObject.h; sourceTree = "<group>"; };
+		8E2B9D5222185E9D0095B2B3 /* CameraHandleObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraHandleObject.m; sourceTree = "<group>"; };
 		8E356877221455E800CC7A02 /* AVFoundationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVFoundationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E35687A221455E800CC7A02 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8E35687B221455E800CC7A02 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8E35687D221455E800CC7A02 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8E35687E221455E800CC7A02 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8E356881221455E800CC7A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8E356883221455E900CC7A02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E356886221455E900CC7A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,6 +90,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E20E52322186189000E7773 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				8E20E524221861C9000E7773 /* NSFileManager+THAdditions.h */,
+				8E20E528221861C9000E7773 /* NSFileManager+THAdditions.m */,
+				8E20E529221861C9000E7773 /* NSTimer+Additions.h */,
+				8E20E525221861C9000E7773 /* NSTimer+Additions.m */,
+				8E20E527221861C9000E7773 /* UIView+THAdditions.h */,
+				8E20E526221861C9000E7773 /* UIView+THAdditions.m */,
+			);
+			path = vendor;
+			sourceTree = "<group>";
+		};
+		8E2B9D4C22185E9D0095B2B3 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		8E2B9D4D22185E9D0095B2B3 /* viewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				8E2B9D4E22185E9D0095B2B3 /* ViewController.m */,
+				8E2B9D4F22185E9D0095B2B3 /* ViewController.h */,
+			);
+			path = viewcontroller;
+			sourceTree = "<group>";
+		};
+		8E2B9D5022185E9D0095B2B3 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8E2B9D5122185E9D0095B2B3 /* CameraHandleObject.h */,
+				8E2B9D5222185E9D0095B2B3 /* CameraHandleObject.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		8E35686E221455E800CC7A02 = {
 			isa = PBXGroup;
 			children = (
@@ -101,10 +151,12 @@
 		8E356879221455E800CC7A02 /* AVFoundationDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8E20E52322186189000E7773 /* vendor */,
+				8E2B9D5022185E9D0095B2B3 /* model */,
+				8E2B9D4C22185E9D0095B2B3 /* view */,
+				8E2B9D4D22185E9D0095B2B3 /* viewcontroller */,
 				8E35687A221455E800CC7A02 /* AppDelegate.h */,
 				8E35687B221455E800CC7A02 /* AppDelegate.m */,
-				8E35687D221455E800CC7A02 /* ViewController.h */,
-				8E35687E221455E800CC7A02 /* ViewController.m */,
 				8E356880221455E800CC7A02 /* Main.storyboard */,
 				8E356883221455E900CC7A02 /* Assets.xcassets */,
 				8E356885221455E900CC7A02 /* LaunchScreen.storyboard */,
@@ -262,9 +314,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E35687F221455E800CC7A02 /* ViewController.m in Sources */,
+				8E20E52C221861C9000E7773 /* NSFileManager+THAdditions.m in Sources */,
+				8E20E52B221861C9000E7773 /* UIView+THAdditions.m in Sources */,
+				8E2B9D5322185E9E0095B2B3 /* ViewController.m in Sources */,
+				8E20E52A221861C9000E7773 /* NSTimer+Additions.m in Sources */,
 				8E35688A221455E900CC7A02 /* main.m in Sources */,
 				8E35687C221455E800CC7A02 /* AppDelegate.m in Sources */,
+				8E2B9D5422185E9E0095B2B3 /* CameraHandleObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +494,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L25YRTH5F6;
 				INFOPLIST_FILE = AVFoundationDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L25YRTH5F6;
 				INFOPLIST_FILE = AVFoundationDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
