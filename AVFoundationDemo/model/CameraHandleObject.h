@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString *const THThumbnailCreatedNotification;
+
 @protocol CameraHandleObjectDelegate <NSObject>
 
 - (void)deviceConfigurationFailedWidthError:(NSError *)error;
@@ -35,8 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 //camera device support
 - (BOOL)switchCameras;
 - (BOOL)canSwitchCameras;
-
+@property(nonatomic, strong, readonly) AVCaptureDevice *activeCamera;
 @property(nonatomic, assign, readonly) NSUInteger cameraCount;
+
 @property(nonatomic, assign, readonly) BOOL cameraHasTorch;
 @property(nonatomic, assign, readonly) BOOL cameraHasFlash;
 @property(nonatomic, assign, readonly) BOOL cameraSupportsTapToFocus;
@@ -57,8 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 //Video Recording
 - (void)startRecording;
 - (void)stopRecording;
-- (void)isRecording;
-
+- (BOOL)isRecording;
 
 @end
 

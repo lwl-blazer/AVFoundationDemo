@@ -8,12 +8,14 @@
 
 #import "CameraHandleObject.h"
 #import <AVFoundation/AVFoundation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 #import <UIKit/UIKit.h>
 
 #import "NSFileManager+THAdditions.h"
 
-@interface CameraHandleObject ()
+NSString *const THThumbnailCreatedNotification = @"THThumbnailCreated";
+
+@interface CameraHandleObject () <AVCaptureFileOutputRecordingDelegate>
 
 @property(nonatomic, strong) dispatch_queue_t videoQueue;
 @property(nonatomic, strong) AVCaptureSession *captureSession;
@@ -317,6 +319,7 @@ static const NSString *THCameraAdjustingExposureContext;
         if (sampleBuffer != NULL) {
             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:sampleBuffer];
             UIImage *image = [[UIImage alloc] initWithData:imageData];
+            [self writeImageToAssetsLibrary:image];
         } else {
             NSLog(@"NULL sampleBuffer: %@", [error localizedDescription]);
         }
@@ -343,4 +346,98 @@ static const NSString *THCameraAdjustingExposureContext;
     }
     return orientation;
 }
+
+- (void)writeImageToAssetsLibrary:(UIImage *)image{ //把照片存入到相册中
+
+}
+
+- (void)postThumbnaiNotification:(UIImage *)image{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:THThumbnailCreatedNotification object:image];
+}
+
+//录制(捕捉)
+- (BOOL)isRecording{
+    return self.movieOutput.isRecording;
+}
+
+- (void)startRecording{
+    if (![self isRecording]) {
+        AVCaptureConnection *videoConnection = [self.movieOutput connectionWithMediaType:AVMediaTypeVideo];
+        
+        if ([videoConnection isVideoOrientationSupported]) {
+            videoConnection.videoOrientation = [self currentVideoOrientation];
+        }
+        
+        if ([videoConnection isVideoStabilizationSupported]) { //是否支持视频稳定
+            videoConnection.enablesVideoStabilizationWhenAvailable = YES;
+        }
+        
+        AVCaptureDevice *device = [self activeCamera];
+        if (device.isSmoothAutoFocusSupported) {  //平滑对焦模式的操作
+            NSError *error;
+            if ([device lockForConfiguration:&error]) {
+                device.smoothAutoFocusEnabled = YES;
+                [device unlockForConfiguration];
+            } else {
+                [self.delegate deviceConfigurationFailedWidthError:error];
+            }
+        }
+        
+        self.outputURL = [self uniqueURL];
+        [self.movieOutput startRecordingToOutputFileURL:self.outputURL recordingDelegate:self]; //开始录制
+    }
+}
+
+- (NSURL *)uniqueURL{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *dirPath = [fileManager temporaryDirectoryWithTemplateString:@"kamera.XXXX"];
+    if (dirPath) {
+        NSString *filePath = [dirPath stringByAppendingPathComponent:@"kamera_moive.mov"];
+        return [NSURL fileURLWithPath:filePath];
+    }
+    return nil;
+}
+
+- (void)stopRecording{
+    if ([self isRecording]) {
+        [self.movieOutput stopRecording];
+    }
+}
+
+#pragma mark -- AVCaptureFileOutputRecordingDelegate
+
+- (void)captureOutput:(AVCaptureFileOutput *)output didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray<AVCaptureConnection *> *)connections error:(NSError *)error{
+    if (error) {
+        [self.delegate mediaCaptureFailedWithError:error];
+    } else {
+        [self writeVideoToAssetLibrary:[self.outputURL copy]];
+    }
+    self.outputURL = nil;
+}
+
+- (void)writeVideoToAssetLibrary:(NSURL *)videoURL{ //存入到相册
+    
+}
+
+- (void)generateThumbnailForVideoAtURL:(NSURL *)videoURL{ //生成缩略图
+    dispatch_async(self.videoQueue, ^{
+        AVAsset *asset = [AVAsset assetWithURL:videoURL];
+        AVAssetImageGenerator *imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
+        imageGenerator.maximumSize = CGSizeMake(100.0, 0.0);
+        imageGenerator.appliesPreferredTrackTransform = YES;
+        
+        CGImageRef imageRef = [imageGenerator copyCGImageAtTime:kCMTimeZero
+                                                     actualTime:NULL
+                                                          error:nil];
+        UIImage *image = [UIImage imageWithCGImage:imageRef];
+        
+        CGImageRelease(imageRef);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self postThumbnaiNotification:image];
+        });
+    });
+}
+
 @end
