@@ -20,6 +20,7 @@
 		8E35688A221455E900CC7A02 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E356889221455E900CC7A02 /* main.m */; };
 		8E356894221455E900CC7A02 /* AVFoundationDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E356893221455E900CC7A02 /* AVFoundationDemoTests.m */; };
 		8E35689F221455E900CC7A02 /* AVFoundationDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E35689E221455E900CC7A02 /* AVFoundationDemoUITests.m */; };
+		8EF5DA7D221C3FB800FA88F2 /* AVCaptureDevice+BLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF5DA7C221C3FB800FA88F2 /* AVCaptureDevice+BLAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		8E35689A221455E900CC7A02 /* AVFoundationDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVFoundationDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E35689E221455E900CC7A02 /* AVFoundationDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVFoundationDemoUITests.m; sourceTree = "<group>"; };
 		8E3568A0221455E900CC7A02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EF5DA7B221C3FB800FA88F2 /* AVCaptureDevice+BLAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVCaptureDevice+BLAdditions.h"; sourceTree = "<group>"; };
+		8EF5DA7C221C3FB800FA88F2 /* AVCaptureDevice+BLAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+BLAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 				8E2B9D5222185E9D0095B2B3 /* CameraHandleObject.m */,
 				8E2A0DAE221AFEFC0068467D /* BaseCameraHandleObject.h */,
 				8E2A0DAF221AFEFC0068467D /* BaseCameraHandleObject.m */,
+				8EF5DA7B221C3FB800FA88F2 /* AVCaptureDevice+BLAdditions.h */,
+				8EF5DA7C221C3FB800FA88F2 /* AVCaptureDevice+BLAdditions.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E20E52C221861C9000E7773 /* NSFileManager+THAdditions.m in Sources */,
+				8EF5DA7D221C3FB800FA88F2 /* AVCaptureDevice+BLAdditions.m in Sources */,
 				8E20E52B221861C9000E7773 /* UIView+THAdditions.m in Sources */,
 				8E2A0DB0221AFEFC0068467D /* BaseCameraHandleObject.m in Sources */,
 				8E2B9D5322185E9E0095B2B3 /* ViewController.m in Sources */,
