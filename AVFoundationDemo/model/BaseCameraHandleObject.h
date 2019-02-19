@@ -18,6 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol BLTextureDelegate <NSObject>
+
+- (void)textureCreateWithTarget: (GLenum)target name:(GLuint)name;
+
+@end
+
+
 @interface BaseCameraHandleObject : CameraHandleObject
 
 @property(nonatomic, weak) id<BaseCameraHandleObjectDelegate>zoomingDelegate;
@@ -27,6 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setZoomValue:(CGFloat)zoomValue;
 - (void)rampZoomToValue:(CGFloat)zoomValue;
 - (void)cancelZoom;
+
+
+- (instancetype)initWithContext:(EAGLContext *)context;
+@property(nonatomic, weak) id<BLTextureDelegate>textureDelegate;
 
 @end
 

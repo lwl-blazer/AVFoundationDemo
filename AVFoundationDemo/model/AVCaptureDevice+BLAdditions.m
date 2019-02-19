@@ -95,7 +95,6 @@
         self.activeVideoMaxFrameDuration = minFrameDuration; //AVFoundation通常处理帧时长数据，使用CMTime实例而不是帧率。minFrameDuration值为maxFrameRate的倒数值，比如帧率为60FPS,则duration为1/60秒
         
         [self unlockForConfiguration];
-        
         return YES;
     }
     
@@ -103,3 +102,5 @@
 }
 
 @end
+
+
