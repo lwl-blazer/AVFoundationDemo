@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E1476EC224A6FCB00310299 /* AudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1476EB224A6FCB00310299 /* AudioModel.m */; };
 		8E20E52A221861C9000E7773 /* NSTimer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E20E525221861C9000E7773 /* NSTimer+Additions.m */; };
 		8E20E52B221861C9000E7773 /* UIView+THAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E20E526221861C9000E7773 /* UIView+THAdditions.m */; };
 		8E20E52C221861C9000E7773 /* NSFileManager+THAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E20E528221861C9000E7773 /* NSFileManager+THAdditions.m */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E1476EA224A6FCB00310299 /* AudioModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioModel.h; sourceTree = "<group>"; };
+		8E1476EB224A6FCB00310299 /* AudioModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioModel.m; sourceTree = "<group>"; };
 		8E20E524221861C9000E7773 /* NSFileManager+THAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+THAdditions.h"; sourceTree = "<group>"; };
 		8E20E525221861C9000E7773 /* NSTimer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Additions.m"; sourceTree = "<group>"; };
 		8E20E526221861C9000E7773 /* UIView+THAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+THAdditions.m"; sourceTree = "<group>"; };
@@ -96,6 +99,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E1476E8224A6FB800310299 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				8E1476E9224A6FB800310299 /* model */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		8E1476E9224A6FB800310299 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8E1476EA224A6FCB00310299 /* AudioModel.h */,
+				8E1476EB224A6FCB00310299 /* AudioModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		8E20E52322186189000E7773 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +181,7 @@
 		8E356879221455E800CC7A02 /* AVFoundationDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8E1476E8224A6FB800310299 /* Audio */,
 				8E20E52322186189000E7773 /* vendor */,
 				8E2B9D5022185E9D0095B2B3 /* model */,
 				8E2B9D4C22185E9D0095B2B3 /* view */,
@@ -326,6 +347,7 @@
 			files = (
 				8E20E52C221861C9000E7773 /* NSFileManager+THAdditions.m in Sources */,
 				8EF5DA7D221C3FB800FA88F2 /* AVCaptureDevice+BLAdditions.m in Sources */,
+				8E1476EC224A6FCB00310299 /* AudioModel.m in Sources */,
 				8E20E52B221861C9000E7773 /* UIView+THAdditions.m in Sources */,
 				8E2A0DB0221AFEFC0068467D /* BaseCameraHandleObject.m in Sources */,
 				8E2B9D5322185E9E0095B2B3 /* ViewController.m in Sources */,
