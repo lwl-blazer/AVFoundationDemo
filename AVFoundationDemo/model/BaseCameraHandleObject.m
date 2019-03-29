@@ -11,6 +11,8 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
+#import <VideoToolbox/VideoToolbox.h>
+
 const CGFloat THZoomRate = 1.0f;
 
 static const NSString *THRampingVideoZoomContext;
@@ -151,6 +153,8 @@ static const NSString *THRampingVideoZoomFactorContext;
 
 /* Core Video 提供了一个对象类型CVOpenGLESTextureCache 作为Core Video像素Buffer和OpenGLES 贴图之间的桥梁。缓存的目的是减少数据从CPU转移到GPU(也可能是反向 的)开销*/
 - (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
+    
+    
     CVReturn err;
     CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);   //CVImageBuffer是CVPixelBufferRef的类型定义
     
@@ -192,6 +196,49 @@ static const NSString *THRampingVideoZoomFactorContext;
     CVOpenGLESTextureCacheFlush(_textureCache, 0);  //刷新贴图缓存
 }
 
+/** 编码 VideoToolbox
+ * 在iOS下进行视频编码的最重要的数据类型就是VTCompressionSession， 它管理着VideoEncoder
+ *
+ * 编码的基本流程:
+    1.创建编码器
+    2.从Camera获取视频帧，获取到的视频帧类型是CVPixelBuffers类型, 一般Camera采集的数据都是每秒30帧
+    3.通过VTCompressionSession管理的VideoEncoder对视频帧进行编码
+    4.输出H264数据，它由CMSampleBuffers容器进行管理
+ */
+- (void)videoEncoderWithSampleBuffer:(CMSampleBufferRef)sampleBuffer{
+    VTCompressionSessionRef sessionRef;
+    OSStatus status = VTCompressionSessionCreate(NULL,  //session分配器  NULL使用默认的分配器
+                                                  600,   //视频帧的像素宽度
+                                                  500,   //视频帧的像素高度
+                                                  kCMVideoCodecType_H264, //编码类型
+                                                  NULL, //使用的视频编码器  NULL让videoToolbox自己选择
+                                                  NULL, //指定源图像属性  如YUV类型为 NV12
+                                                  NULL,  //压缩数据分配器  NULL使用默认
+                                                  NULL,  //编码后的回调函数。该函数会在不同的线程中异步调用。
+                                                  NULL,  //用户自定义的回调上下文，一般设置为NULL。
+                                                  &sessionRef //compression session的返回值
+                                                  );
+    
+    /** 配置CompressionSession
+     * 设置RealTime 即是否是实时编码
+     * 设置Profile level, baseline, mainline, highlevel等
+     * 设置是否允许录制
+     * 设置平均比特率及最大码流。 最大码流是平均比特率的1.5倍
+     * 设置关键帧最大间隔为60fps
+     * 设置关键帧持续时间 240s
+     */
+    status = VTSessionSetProperty(sessionRef, NULL, NULL);
+    
+    //对视频帧进行编码
+    VTCompressionSessionEncodeFrame(sessionRef,
+                                    NULL,   // 它里面包含了被压缩的视频帧
+                                    CMTimeMake(3, 300),   //pts 视频帧展示时的时间戳
+                                    kCMTimeZero, //时间    没用
+                                    NULL,  //键值对  指明了额外的属性
+                                    NULL, //可用于存放上下文， 它将被透传给回调函数
+                                    NULL);
+}
+
 @end
 
 
@@ -208,4 +255,23 @@ static const NSString *THRampingVideoZoomFactorContext;
  CMSampleBufferGetPresentationTimeStamp函数和 CMSampleBufferGetDecodeTimeStamp 函数提取时间信息来得到原始的表示时间戳和解码时间戳
  
  CMAttachment形式的元数据协议   提供了读取和写入底层元数据的基础架构   比如可交换图片文件格式(Exif)标签
+ */
+
+
+/**
+ * CMSampleBuffer  存放视频数据的容器。它即可以存放原始视频数据，也可以存放编码后的视频数据
+ *
+ * CMVideoFormatDescription   存放图像信息的数据结构，如宽\高格式类型(kCMPixelFormat_32BGRA, kCMVideoCodecType_H264, ...), 扩展(像素宽高比，颜色空间...)
+ *
+ * CVPixelBuffer  存放未压缩 \ 未编码的原始数据
+ *
+ * CVPixelBuffer   存放未压缩/未编码的原始数据
+ *
+ * CVPixelBufferPool : CVPixelBuffer 对象池
+ *
+ * pixelBufferAttributes  存放视频的宽/高， 像素类型(32BGRA, YCbCr420), 兼容性(OpenGL ES, Core Animation)
+ *
+ * CMBlockBuffer 存放编码后的视频数据
+ *
+ * CMTime/CMClock/CMTimebase 存放时间戳
  */
