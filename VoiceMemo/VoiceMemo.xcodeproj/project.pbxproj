@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		257C8D482546649000CC3E02 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8D472546649000CC3E02 /* AppDelegate.m */; };
+		257C8D4B2546649000CC3E02 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8D4A2546649000CC3E02 /* SceneDelegate.m */; };
+		257C8D4E2546649000CC3E02 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8D4D2546649000CC3E02 /* ViewController.m */; };
+		257C8D512546649000CC3E02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 257C8D4F2546649000CC3E02 /* Main.storyboard */; };
+		257C8D532546649700CC3E02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 257C8D522546649700CC3E02 /* Assets.xcassets */; };
+		257C8D562546649700CC3E02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 257C8D542546649700CC3E02 /* LaunchScreen.storyboard */; };
+		257C8D592546649700CC3E02 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8D582546649700CC3E02 /* main.m */; };
+		257C8D632546649800CC3E02 /* VoiceMemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8D622546649800CC3E02 /* VoiceMemoTests.m */; };
+		257C8D6E2546649800CC3E02 /* VoiceMemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8D6D2546649800CC3E02 /* VoiceMemoUITests.m */; };
+		257C8D8125466C8E00CC3E02 /* MemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8D8025466C8E00CC3E02 /* MemoCell.m */; };
+		257C8D8B2546701800CC3E02 /* LevelMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8D8A2546701800CC3E02 /* LevelMeterView.m */; };
+		257C8D9D2546756E00CC3E02 /* RecorderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8D9C2546756E00CC3E02 /* RecorderController.m */; };
+		257C8DA3254675F800CC3E02 /* LevelPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8DA2254675F800CC3E02 /* LevelPair.m */; };
+		257C8DA92546761C00CC3E02 /* Memo.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8DA82546761C00CC3E02 /* Memo.m */; };
+		257C8DAF254699D700CC3E02 /* MeterTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8DAE254699D700CC3E02 /* MeterTable.m */; };
+		257C8DB62547B8C100CC3E02 /* LevelMeterColorThreshold.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C8DB52547B8BE00CC3E02 /* LevelMeterColorThreshold.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		257C8D5F2546649800CC3E02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 257C8D3B2546649000CC3E02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 257C8D422546649000CC3E02;
+			remoteInfo = VoiceMemo;
+		};
+		257C8D6A2546649800CC3E02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 257C8D3B2546649000CC3E02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 257C8D422546649000CC3E02;
+			remoteInfo = VoiceMemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		257C8D432546649000CC3E02 /* VoiceMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		257C8D462546649000CC3E02 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		257C8D472546649000CC3E02 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		257C8D492546649000CC3E02 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		257C8D4A2546649000CC3E02 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		257C8D4C2546649000CC3E02 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		257C8D4D2546649000CC3E02 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		257C8D502546649000CC3E02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		257C8D522546649700CC3E02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		257C8D552546649700CC3E02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		257C8D572546649700CC3E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		257C8D582546649700CC3E02 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		257C8D5E2546649800CC3E02 /* VoiceMemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoiceMemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		257C8D622546649800CC3E02 /* VoiceMemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoiceMemoTests.m; sourceTree = "<group>"; };
+		257C8D642546649800CC3E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		257C8D692546649800CC3E02 /* VoiceMemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoiceMemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		257C8D6D2546649800CC3E02 /* VoiceMemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoiceMemoUITests.m; sourceTree = "<group>"; };
+		257C8D6F2546649800CC3E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		257C8D7F25466C8E00CC3E02 /* MemoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoCell.h; sourceTree = "<group>"; };
+		257C8D8025466C8E00CC3E02 /* MemoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoCell.m; sourceTree = "<group>"; };
+		257C8D892546701800CC3E02 /* LevelMeterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelMeterView.h; sourceTree = "<group>"; };
+		257C8D8A2546701800CC3E02 /* LevelMeterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevelMeterView.m; sourceTree = "<group>"; };
+		257C8D9B2546756E00CC3E02 /* RecorderController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecorderController.h; sourceTree = "<group>"; };
+		257C8D9C2546756E00CC3E02 /* RecorderController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecorderController.m; sourceTree = "<group>"; };
+		257C8DA1254675F800CC3E02 /* LevelPair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelPair.h; sourceTree = "<group>"; };
+		257C8DA2254675F800CC3E02 /* LevelPair.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevelPair.m; sourceTree = "<group>"; };
+		257C8DA72546761C00CC3E02 /* Memo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Memo.h; sourceTree = "<group>"; };
+		257C8DA82546761C00CC3E02 /* Memo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Memo.m; sourceTree = "<group>"; };
+		257C8DAD254699D700CC3E02 /* MeterTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeterTable.h; sourceTree = "<group>"; };
+		257C8DAE254699D700CC3E02 /* MeterTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeterTable.m; sourceTree = "<group>"; };
+		257C8DB42547B8BE00CC3E02 /* LevelMeterColorThreshold.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelMeterColorThreshold.h; sourceTree = "<group>"; };
+		257C8DB52547B8BE00CC3E02 /* LevelMeterColorThreshold.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevelMeterColorThreshold.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		257C8D402546649000CC3E02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		257C8D5B2546649800CC3E02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		257C8D662546649800CC3E02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		257C8D3A2546649000CC3E02 = {
+			isa = PBXGroup;
+			children = (
+				257C8D452546649000CC3E02 /* VoiceMemo */,
+				257C8D612546649800CC3E02 /* VoiceMemoTests */,
+				257C8D6C2546649800CC3E02 /* VoiceMemoUITests */,
+				257C8D442546649000CC3E02 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		257C8D442546649000CC3E02 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				257C8D432546649000CC3E02 /* VoiceMemo.app */,
+				257C8D5E2546649800CC3E02 /* VoiceMemoTests.xctest */,
+				257C8D692546649800CC3E02 /* VoiceMemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		257C8D452546649000CC3E02 /* VoiceMemo */ = {
+			isa = PBXGroup;
+			children = (
+				257C8D7E25466C7900CC3E02 /* UI */,
+				257C8D462546649000CC3E02 /* AppDelegate.h */,
+				257C8D472546649000CC3E02 /* AppDelegate.m */,
+				257C8D492546649000CC3E02 /* SceneDelegate.h */,
+				257C8D4A2546649000CC3E02 /* SceneDelegate.m */,
+				257C8D4C2546649000CC3E02 /* ViewController.h */,
+				257C8D4D2546649000CC3E02 /* ViewController.m */,
+				257C8D9B2546756E00CC3E02 /* RecorderController.h */,
+				257C8D9C2546756E00CC3E02 /* RecorderController.m */,
+				257C8DA1254675F800CC3E02 /* LevelPair.h */,
+				257C8DA2254675F800CC3E02 /* LevelPair.m */,
+				257C8DA72546761C00CC3E02 /* Memo.h */,
+				257C8DA82546761C00CC3E02 /* Memo.m */,
+				257C8DAD254699D700CC3E02 /* MeterTable.h */,
+				257C8DAE254699D700CC3E02 /* MeterTable.m */,
+				257C8D4F2546649000CC3E02 /* Main.storyboard */,
+				257C8D522546649700CC3E02 /* Assets.xcassets */,
+				257C8D542546649700CC3E02 /* LaunchScreen.storyboard */,
+				257C8D572546649700CC3E02 /* Info.plist */,
+				257C8D582546649700CC3E02 /* main.m */,
+			);
+			path = VoiceMemo;
+			sourceTree = "<group>";
+		};
+		257C8D612546649800CC3E02 /* VoiceMemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				257C8D622546649800CC3E02 /* VoiceMemoTests.m */,
+				257C8D642546649800CC3E02 /* Info.plist */,
+			);
+			path = VoiceMemoTests;
+			sourceTree = "<group>";
+		};
+		257C8D6C2546649800CC3E02 /* VoiceMemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				257C8D6D2546649800CC3E02 /* VoiceMemoUITests.m */,
+				257C8D6F2546649800CC3E02 /* Info.plist */,
+			);
+			path = VoiceMemoUITests;
+			sourceTree = "<group>";
+		};
+		257C8D7E25466C7900CC3E02 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				257C8D8825466FFA00CC3E02 /* LevelMeter */,
+				257C8D7F25466C8E00CC3E02 /* MemoCell.h */,
+				257C8D8025466C8E00CC3E02 /* MemoCell.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		257C8D8825466FFA00CC3E02 /* LevelMeter */ = {
+			isa = PBXGroup;
+			children = (
+				257C8D892546701800CC3E02 /* LevelMeterView.h */,
+				257C8D8A2546701800CC3E02 /* LevelMeterView.m */,
+				257C8DB42547B8BE00CC3E02 /* LevelMeterColorThreshold.h */,
+				257C8DB52547B8BE00CC3E02 /* LevelMeterColorThreshold.m */,
+			);
+			path = LevelMeter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		257C8D422546649000CC3E02 /* VoiceMemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 257C8D722546649800CC3E02 /* Build configuration list for PBXNativeTarget "VoiceMemo" */;
+			buildPhases = (
+				257C8D3F2546649000CC3E02 /* Sources */,
+				257C8D402546649000CC3E02 /* Frameworks */,
+				257C8D412546649000CC3E02 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VoiceMemo;
+			productName = VoiceMemo;
+			productReference = 257C8D432546649000CC3E02 /* VoiceMemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		257C8D5D2546649800CC3E02 /* VoiceMemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 257C8D752546649800CC3E02 /* Build configuration list for PBXNativeTarget "VoiceMemoTests" */;
+			buildPhases = (
+				257C8D5A2546649800CC3E02 /* Sources */,
+				257C8D5B2546649800CC3E02 /* Frameworks */,
+				257C8D5C2546649800CC3E02 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				257C8D602546649800CC3E02 /* PBXTargetDependency */,
+			);
+			name = VoiceMemoTests;
+			productName = VoiceMemoTests;
+			productReference = 257C8D5E2546649800CC3E02 /* VoiceMemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		257C8D682546649800CC3E02 /* VoiceMemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 257C8D782546649800CC3E02 /* Build configuration list for PBXNativeTarget "VoiceMemoUITests" */;
+			buildPhases = (
+				257C8D652546649800CC3E02 /* Sources */,
+				257C8D662546649800CC3E02 /* Frameworks */,
+				257C8D672546649800CC3E02 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				257C8D6B2546649800CC3E02 /* PBXTargetDependency */,
+			);
+			name = VoiceMemoUITests;
+			productName = VoiceMemoUITests;
+			productReference = 257C8D692546649800CC3E02 /* VoiceMemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		257C8D3B2546649000CC3E02 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					257C8D422546649000CC3E02 = {
+						CreatedOnToolsVersion = 12.1;
+					};
+					257C8D5D2546649800CC3E02 = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = 257C8D422546649000CC3E02;
+					};
+					257C8D682546649800CC3E02 = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = 257C8D422546649000CC3E02;
+					};
+				};
+			};
+			buildConfigurationList = 257C8D3E2546649000CC3E02 /* Build configuration list for PBXProject "VoiceMemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 257C8D3A2546649000CC3E02;
+			productRefGroup = 257C8D442546649000CC3E02 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				257C8D422546649000CC3E02 /* VoiceMemo */,
+				257C8D5D2546649800CC3E02 /* VoiceMemoTests */,
+				257C8D682546649800CC3E02 /* VoiceMemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		257C8D412546649000CC3E02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				257C8D562546649700CC3E02 /* LaunchScreen.storyboard in Resources */,
+				257C8D532546649700CC3E02 /* Assets.xcassets in Resources */,
+				257C8D512546649000CC3E02 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		257C8D5C2546649800CC3E02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		257C8D672546649800CC3E02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		257C8D3F2546649000CC3E02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				257C8D4E2546649000CC3E02 /* ViewController.m in Sources */,
+				257C8D482546649000CC3E02 /* AppDelegate.m in Sources */,
+				257C8DA3254675F800CC3E02 /* LevelPair.m in Sources */,
+				257C8D592546649700CC3E02 /* main.m in Sources */,
+				257C8D8B2546701800CC3E02 /* LevelMeterView.m in Sources */,
+				257C8DB62547B8C100CC3E02 /* LevelMeterColorThreshold.m in Sources */,
+				257C8D4B2546649000CC3E02 /* SceneDelegate.m in Sources */,
+				257C8DAF254699D700CC3E02 /* MeterTable.m in Sources */,
+				257C8D9D2546756E00CC3E02 /* RecorderController.m in Sources */,
+				257C8DA92546761C00CC3E02 /* Memo.m in Sources */,
+				257C8D8125466C8E00CC3E02 /* MemoCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		257C8D5A2546649800CC3E02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				257C8D632546649800CC3E02 /* VoiceMemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		257C8D652546649800CC3E02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				257C8D6E2546649800CC3E02 /* VoiceMemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		257C8D602546649800CC3E02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 257C8D422546649000CC3E02 /* VoiceMemo */;
+			targetProxy = 257C8D5F2546649800CC3E02 /* PBXContainerItemProxy */;
+		};
+		257C8D6B2546649800CC3E02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 257C8D422546649000CC3E02 /* VoiceMemo */;
+			targetProxy = 257C8D6A2546649800CC3E02 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		257C8D4F2546649000CC3E02 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				257C8D502546649000CC3E02 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		257C8D542546649700CC3E02 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				257C8D552546649700CC3E02 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		257C8D702546649800CC3E02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		257C8D712546649800CC3E02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		257C8D732546649800CC3E02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L25YRTH5F6;
+				INFOPLIST_FILE = VoiceMemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = bee2c.com.VoiceMemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		257C8D742546649800CC3E02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L25YRTH5F6;
+				INFOPLIST_FILE = VoiceMemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = bee2c.com.VoiceMemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		257C8D762546649800CC3E02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ME92NL5RP7;
+				INFOPLIST_FILE = VoiceMemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = bee2c.com.VoiceMemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VoiceMemo.app/VoiceMemo";
+			};
+			name = Debug;
+		};
+		257C8D772546649800CC3E02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ME92NL5RP7;
+				INFOPLIST_FILE = VoiceMemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = bee2c.com.VoiceMemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VoiceMemo.app/VoiceMemo";
+			};
+			name = Release;
+		};
+		257C8D792546649800CC3E02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ME92NL5RP7;
+				INFOPLIST_FILE = VoiceMemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = bee2c.com.VoiceMemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VoiceMemo;
+			};
+			name = Debug;
+		};
+		257C8D7A2546649800CC3E02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ME92NL5RP7;
+				INFOPLIST_FILE = VoiceMemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = bee2c.com.VoiceMemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VoiceMemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		257C8D3E2546649000CC3E02 /* Build configuration list for PBXProject "VoiceMemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				257C8D702546649800CC3E02 /* Debug */,
+				257C8D712546649800CC3E02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		257C8D722546649800CC3E02 /* Build configuration list for PBXNativeTarget "VoiceMemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				257C8D732546649800CC3E02 /* Debug */,
+				257C8D742546649800CC3E02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		257C8D752546649800CC3E02 /* Build configuration list for PBXNativeTarget "VoiceMemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				257C8D762546649800CC3E02 /* Debug */,
+				257C8D772546649800CC3E02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		257C8D782546649800CC3E02 /* Build configuration list for PBXNativeTarget "VoiceMemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				257C8D792546649800CC3E02 /* Debug */,
+				257C8D7A2546649800CC3E02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 257C8D3B2546649000CC3E02 /* Project object */;
+}
