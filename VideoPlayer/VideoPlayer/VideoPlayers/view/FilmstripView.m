@@ -22,7 +22,8 @@
 - (instancetype)initWithCoder:(NSCoder *)coder{
     self = [super initWithCoder:coder];
     if (self) {
-        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 99.0)];
+        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 43, [UIScreen mainScreen].bounds.size.width, 56.0)];
+        self.scrollView.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.scrollView];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -38,6 +39,7 @@
 }
 
 - (void)buildScrubber:(NSNotification *)notification{
+    
     self.thumbnails = [notification object];
 
     CGFloat currentX = 0.0f;
@@ -61,6 +63,7 @@
         [self.scrollView addSubview:button];
         currentX += imageSize.width;
     }
+    
 }
 
 - (void)imageButtonTapped:(UIButton *)sender {

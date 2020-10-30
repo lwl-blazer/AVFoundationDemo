@@ -29,7 +29,7 @@
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [(AVPlayerLayer *)[self layer] setPlayer:player];
         
-        [[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
+       self.overlayView = [[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil].firstObject;
         [self addSubview:self.overlayView];
     }
     return self;

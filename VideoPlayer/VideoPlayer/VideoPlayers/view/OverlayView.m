@@ -12,6 +12,7 @@
 #import "NSTimer+BLAdditions.h"
 
 #define ENABLE_AIRPLAY 0
+#define ENABLE_SUBTITLES 0
 
 @interface OverlayView ()
 
@@ -106,9 +107,7 @@
     self.infoViewOffset = ceilf(CGRectGetWidth(self.infoView.frame) / 2);
 }
 
-- (void)setScrubbingTime:(NSTimeInterval)time {
-    self.timeLabel.text = [self formatSeconds:time];
-}
+
 
 - (NSString *)formatSeconds:(NSInteger)value {
     NSInteger seconds = value % 60;
@@ -116,29 +115,19 @@
     return [NSString stringWithFormat:@"%02ld:%02ld", (long) minutes, (long) seconds];
 }
 
-- (void)setCurrentTime:(NSTimeInterval)time duration:(NSTimeInterval)duration {
-    NSInteger currentSeconds = ceilf(time);
-    double remainingTime = duration - time;
-    self.currentTimeLabel.text = [self formatSeconds:currentSeconds];
-    self.remainingTimeLabel.text = [self formatSeconds:remainingTime];
-    self.scrubberSlider.minimumValue = 0.0f;
-    self.scrubberSlider.maximumValue = duration;
-    self.scrubberSlider.value = time;
-}
-
 - (void)showPopupUI {
     self.infoView.hidden = NO;
     CGRect trackRect = [self.scrubberSlider convertRect:self.scrubberSlider.bounds toView:nil];
     CGRect thumbRect = [self.scrubberSlider thumbRectForBounds:self.scrubberSlider.bounds trackRect:trackRect value:self.scrubberSlider.value];
-
+    
     CGRect rect = self.infoView.frame;
     rect.origin.x = (thumbRect.origin.x) - self.infoViewOffset + 16;
     rect.origin.y = self.boundsHeight - 80;
     self.infoView.frame = rect;
-
+    
     self.currentTimeLabel.text = @"-- : --";
     self.remainingTimeLabel.text = @"-- : --";
-
+    
     [self setScrubbingTime:self.scrubberSlider.value];
     [self.delegate scrubbedToTime:self.scrubberSlider.value];
 }
@@ -232,5 +221,55 @@
 - (void)setCurrentTime:(NSTimeInterval)currentTime {
     [self.delegate jumpedToTime:currentTime];
 }
+
+#pragma mark -- Transport
+- (void)setCurrentTime:(NSTimeInterval)time duration:(NSTimeInterval)duration {
+    NSInteger currentSeconds = ceilf(time);
+    double remainingTime = duration - time;
+    self.currentTimeLabel.text = [self formatSeconds:currentSeconds];
+    self.remainingTimeLabel.text = [self formatSeconds:remainingTime];
+    self.scrubberSlider.minimumValue = 0.0f;
+    self.scrubberSlider.maximumValue = duration;
+    self.scrubberSlider.value = time;
+}
+
+- (void)playbackComplete {
+    self.scrubberSlider.value = 0.0f;
+    self.togglePlaybackButton.selected = NO;
+}
+
+- (void)setScrubbingTime:(NSTimeInterval)time {
+    self.timeLabel.text = [self formatSeconds:time];
+}
+
+- (void)setTitle:(nonnull NSString *)title {
+    self.navigationBar.topItem.title = title ? title : @"Video Player";
+}
+
+- (void)setSubtitles:(NSArray *)subtitles {
+#if ENABLE_SUBTITLES == 1
+    NSMutableArray *filtered = [NSMutableArray array];
+    [filtered addObject:@"None"];
+    for (NSString *sub in subtitles) {
+        if ([sub rangeOfString:@"Forced"].location == NSNotFound) {
+            [filtered addObject:sub];
+        }
+    }
+    _subtitles = filtered;
+    if (_subtitles && _subtitles.count > 1) {
+        NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
+        UIImage *image = [UIImage imageNamed:@"subtitles"];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:image
+                                                                 style:UIBarButtonItemStyleBordered
+                                                                target:self
+                                                                action:@selector(showSubtitles:)];
+        [items addObject:item];
+        self.toolbar.items = items;
+        [self calculateInfoViewOffset];
+    }
+#endif
+}
+
+@synthesize delegate;
 
 @end

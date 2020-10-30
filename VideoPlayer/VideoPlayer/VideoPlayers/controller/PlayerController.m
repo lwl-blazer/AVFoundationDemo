@@ -28,6 +28,8 @@ static const NSString *PlayerItemStatusContext;
 @property(nonatomic, strong) AVPlayer *player;
 @property(nonatomic, strong) PlayerView *playerView;
 
+@property(nonatomic, strong) AVAssetImageGenerator *imageGenerator;
+
 @property(nonatomic, weak) id<Transport>transport;
 
 @property(nonatomic, strong) id timeObserver;
@@ -63,7 +65,7 @@ static const NSString *PlayerItemStatusContext;
     
     self.playerView = [[PlayerView alloc] initWithPlayer:self.player];
     self.transport = self.playerView.transport;
-    self.transport.delgate = self;
+    self.transport.delegate = self;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -88,6 +90,8 @@ static const NSString *PlayerItemStatusContext;
                 [self.transport setTitle:self.asset.title];
                 
                 [self.player play];
+                
+                [self generateThumbnails];
             } else {
                 NSLog(@"Error Faile to load Video");
             }
@@ -134,39 +138,86 @@ static const NSString *PlayerItemStatusContext;
     }];
 }
 
+
+
 #pragma mark -- TransportDelegate
 
 - (void)play{
-    
+    [self.player play];
 }
 
 - (void)pause{
-    
+    self.lastPlaybackRate = self.player.rate;
+    [self.player pause];
 }
 
 - (void)stop{
-    
+    [self.player setRate:0.0f]; //相当调用了pause
+    [self.transport playbackComplete];
 }
 
 - (void)jumpedToTime:(NSTimeInterval)time{
-    
+    [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
 }
 
 - (void)scrubbingDidStart {
-    
+    self.lastPlaybackRate = self.player.rate;
+    [self.player pause];
+    [self.player removeTimeObserver:self.timeObserver];
+    self.timeObserver = nil;
 }
 
 - (void)scrubbedToTime:(NSTimeInterval)time{
-    
+    //由于移动滑动条位置时会迅速触发，所以首先应该在播放条目上调用cancelPendingSeeks 这是经过性能优化的，如果前一个搜索请求没有完成，则避免操作堆积情况的出现
+    [self.playerItem cancelPendingSeeks];
+    //seekToTime发起一个新的搜索
+    [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
 }
 
 - (void)scrubbingDidEnd{
-    
+    [self addPlayerItemTimeObserver];
+    if (self.lastPlaybackRate > 0.0f) {
+        [self.player play];
+    }
 }
 
 #pragma mark - Thumbnail Generation
 - (void)generateThumbnails {
+    self.imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:self.asset];
     
+    self.imageGenerator.maximumSize = CGSizeMake(200.0f, 0.0f);
+    
+    CMTime duration = self.asset.duration;
+    
+    NSMutableArray *times = [NSMutableArray array];
+    CMTimeValue increment = duration.value / 20;
+    CMTimeValue currentValue = kCMTimeZero.value;
+    while (currentValue <= duration.value) {
+        CMTime time = CMTimeMake(currentValue, duration.timescale);
+        [times addObject:[NSValue valueWithCMTime:time]];
+        currentValue += increment;
+    }
+    
+    __block NSUInteger imageCount = times.count;
+    __block NSMutableArray *images = [NSMutableArray array];
+    [self.imageGenerator generateCGImagesAsynchronouslyForTimes:times
+    completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable imageRef, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) {
+        if (result == AVAssetImageGeneratorSucceeded) {
+            UIImage *image = [UIImage imageWithCGImage:imageRef];
+            Thumbnail *thumbnail = [Thumbnail thumbnailWithImage:image
+                                                            time:actualTime];
+            [images addObject:thumbnail];
+        } else {
+            NSLog(@"Failed to create thumbnail image.");
+        }
+        
+        if (--imageCount == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:ThumbnailsGeneratedNotification
+                                                                    object:images];
+            });
+        }
+    }];
 }
 
 - (void)loadMediaOptions {

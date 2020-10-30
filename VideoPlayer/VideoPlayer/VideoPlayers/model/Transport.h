@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol Transport <NSObject>
 
-@property (weak, nonatomic) id<TransportDelegate>delgate;
+@property (weak, nonatomic) id<TransportDelegate>delegate;
 
 - (void)setTitle:(NSString *)title;
 - (void)setCurrentTime:(NSTimeInterval)time duration:(NSTimeInterval)duration;

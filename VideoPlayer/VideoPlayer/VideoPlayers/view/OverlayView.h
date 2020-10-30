@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OverlayView : UIView
+@interface OverlayView : UIView<Transport>
 
-@property (weak, nonatomic) id <TransportDelegate> delegate;
+@property(nonatomic, weak) id<TransportDelegate>delegate;
+
 - (void)setCurrentTime:(NSTimeInterval)time;
 
 @end
