@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25085889254AAE55006E7A14 /* Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 25085888254AAE55006E7A14 /* Notifications.m */; };
+		2508588F254AAF5A006E7A14 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2508588E254AAF5A006E7A14 /* OverlayView.m */; };
+		25085894254AAFB6006E7A14 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25085893254AAFB6006E7A14 /* OverlayView.xib */; };
+		2508589A254ABA2E006E7A14 /* FilmstripView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25085899254ABA2E006E7A14 /* FilmstripView.m */; };
+		250858A0254B9967006E7A14 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2508589F254B9967006E7A14 /* PlayerView.m */; };
 		25A9321B2549610200464A44 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9321A2549610200464A44 /* AppDelegate.m */; };
 		25A9321E2549610200464A44 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9321D2549610200464A44 /* SceneDelegate.m */; };
 		25A932212549610200464A44 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A932202549610200464A44 /* ViewController.m */; };
@@ -24,6 +29,7 @@
 		25A93284254AA05000464A44 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A93283254AA04F00464A44 /* PlayerViewController.m */; };
 		25A9328A254AA23500464A44 /* hubblecast.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 25A93289254AA23500464A44 /* hubblecast.m4v */; };
 		25A93290254AA51300464A44 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9328F254AA51300464A44 /* PlayerController.m */; };
+		25A9329C254AA8A200464A44 /* Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9329B254AA8A200464A44 /* Thumbnail.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		25085887254AAE55006E7A14 /* Notifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
+		25085888254AAE55006E7A14 /* Notifications.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Notifications.m; sourceTree = "<group>"; };
+		2508588D254AAF5A006E7A14 /* OverlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
+		2508588E254AAF5A006E7A14 /* OverlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
+		25085893254AAFB6006E7A14 /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		25085898254ABA2E006E7A14 /* FilmstripView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmstripView.h; sourceTree = "<group>"; };
+		25085899254ABA2E006E7A14 /* FilmstripView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilmstripView.m; sourceTree = "<group>"; };
+		2508589E254B9967006E7A14 /* PlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
+		2508589F254B9967006E7A14 /* PlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
 		25A932162549610200464A44 /* VideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A932192549610200464A44 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		25A9321A2549610200464A44 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,6 +92,9 @@
 		25A93289254AA23500464A44 /* hubblecast.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = hubblecast.m4v; sourceTree = "<group>"; };
 		25A9328E254AA51300464A44 /* PlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		25A9328F254AA51300464A44 /* PlayerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
+		25A9329A254AA8A200464A44 /* Thumbnail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thumbnail.h; sourceTree = "<group>"; };
+		25A9329B254AA8A200464A44 /* Thumbnail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Thumbnail.m; sourceTree = "<group>"; };
+		25A932A0254AAACD00464A44 /* Transport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transport.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +154,8 @@
 				25A9321D2549610200464A44 /* SceneDelegate.m */,
 				25A9321F2549610200464A44 /* ViewController.h */,
 				25A932202549610200464A44 /* ViewController.m */,
+				25085887254AAE55006E7A14 /* Notifications.h */,
+				25085888254AAE55006E7A14 /* Notifications.m */,
 				25A93288254AA21000464A44 /* Resources */,
 				25A932222549610200464A44 /* Main.storyboard */,
 				25A932252549610500464A44 /* Assets.xcassets */,
@@ -191,6 +211,7 @@
 		25A93281254AA02B00464A44 /* VideoPlayers */ = {
 			isa = PBXGroup;
 			children = (
+				25A93299254AA88800464A44 /* model */,
 				25A93295254AA57800464A44 /* view */,
 				25A93294254AA56E00464A44 /* controller */,
 			);
@@ -219,8 +240,25 @@
 		25A93295254AA57800464A44 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				2508588D254AAF5A006E7A14 /* OverlayView.h */,
+				2508588E254AAF5A006E7A14 /* OverlayView.m */,
+				25085893254AAFB6006E7A14 /* OverlayView.xib */,
+				25085898254ABA2E006E7A14 /* FilmstripView.h */,
+				25085899254ABA2E006E7A14 /* FilmstripView.m */,
+				2508589E254B9967006E7A14 /* PlayerView.h */,
+				2508589F254B9967006E7A14 /* PlayerView.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		25A93299254AA88800464A44 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				25A9329A254AA8A200464A44 /* Thumbnail.h */,
+				25A9329B254AA8A200464A44 /* Thumbnail.m */,
+				25A932A0254AAACD00464A44 /* Transport.h */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +365,7 @@
 			files = (
 				25A9328A254AA23500464A44 /* hubblecast.m4v in Resources */,
 				25A932292549610500464A44 /* LaunchScreen.storyboard in Resources */,
+				25085894254AAFB6006E7A14 /* OverlayView.xib in Resources */,
 				25A932262549610500464A44 /* Assets.xcassets in Resources */,
 				25A932242549610200464A44 /* Main.storyboard in Resources */,
 			);
@@ -354,16 +393,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				25A93276254A94E500464A44 /* UIView+BLAdditions.m in Sources */,
+				25085889254AAE55006E7A14 /* Notifications.m in Sources */,
+				2508589A254ABA2E006E7A14 /* FilmstripView.m in Sources */,
 				25A93270254A93F000464A44 /* UIAlertController+BLAdditions.m in Sources */,
+				25A9329C254AA8A200464A44 /* Thumbnail.m in Sources */,
 				25A932212549610200464A44 /* ViewController.m in Sources */,
 				25A9325B2549624900464A44 /* AVAsset+BLAdditions.m in Sources */,
 				25A93290254AA51300464A44 /* PlayerController.m in Sources */,
 				25A9327D254A979900464A44 /* HCYoutubeParser.m in Sources */,
 				25A9326725497C0700464A44 /* NSTimer+BLAdditions.m in Sources */,
+				2508588F254AAF5A006E7A14 /* OverlayView.m in Sources */,
 				25A9321B2549610200464A44 /* AppDelegate.m in Sources */,
 				25A9322C2549610500464A44 /* main.m in Sources */,
 				25A9321E2549610200464A44 /* SceneDelegate.m in Sources */,
 				25A93284254AA05000464A44 /* PlayerViewController.m in Sources */,
+				250858A0254B9967006E7A14 /* PlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,7 +45,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSURL *url = [identifier isEqualToString:LOCAL_SEGUE] ? self.localURL : self.streamingURL;
+    NSURL *url = [segue.identifier isEqualToString:LOCAL_SEGUE] ? self.localURL : self.streamingURL;
     PlayerViewController *player = [segue destinationViewController];
     player.assetURL = url;
 }
