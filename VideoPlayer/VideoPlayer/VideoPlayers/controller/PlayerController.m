@@ -52,7 +52,7 @@ static const NSString *PlayerItemStatusContext;
 }
 
 - (void)prepareToPlay {
-    NSArray *keys = @[@"tracks", @"duration", @"commonMetadata"];
+    NSArray *keys = @[@"tracks", @"duration", @"commonMetadata", @"availableMediaCharacteristicsWithMediaSelectionOptions"];
     self.playerItem = [AVPlayerItem playerItemWithAsset:self.asset
                            automaticallyLoadedAssetKeys:keys];
 
@@ -66,6 +66,8 @@ static const NSString *PlayerItemStatusContext;
     self.playerView = [[PlayerView alloc] initWithPlayer:self.player];
     self.transport = self.playerView.transport;
     self.transport.delegate = self;
+    
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -92,6 +94,8 @@ static const NSString *PlayerItemStatusContext;
                 [self.player play];
                 
                 [self generateThumbnails];
+                
+                [self loadMediaOptions];
             } else {
                 NSLog(@"Error Faile to load Video");
             }
@@ -183,8 +187,10 @@ static const NSString *PlayerItemStatusContext;
 
 #pragma mark - Thumbnail Generation
 - (void)generateThumbnails {
-    self.imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:self.asset];
     
+    //注意强引用的问题 如果没有强引用会导致不回调
+    self.imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:self.asset];
+    //默认情况，捕捉的图片都保持原始维度(原始大小)。 设置maximumSize属性会自动对图片的尺寸进行缩放并显著提高性能，指定一个宽度，这样可以确保生成的图片都遵循一定的宽度，并会根据视频的宽高比自动设置高度值
     self.imageGenerator.maximumSize = CGSizeMake(200.0f, 0.0f);
     
     CMTime duration = self.asset.duration;
@@ -198,10 +204,11 @@ static const NSString *PlayerItemStatusContext;
         currentValue += increment;
     }
     
+    //所有图片处理完成的时间
     __block NSUInteger imageCount = times.count;
     __block NSMutableArray *images = [NSMutableArray array];
     [self.imageGenerator generateCGImagesAsynchronouslyForTimes:times
-    completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable imageRef, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) {
+                                              completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable imageRef, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) { //requestedTime 请求的最初时间 imageRef actualTime 图片实际生成的时间。其于实际效率，这个值可能与请求时不同，可以通过在AVAssetImageGenertor设置requestedTimeToleranceBefore和requestTimeToleranceAfter来调整requestTime和actualTime的接近程序    result 状态
         if (result == AVAssetImageGeneratorSucceeded) {
             UIImage *image = [UIImage imageWithCGImage:imageRef];
             Thumbnail *thumbnail = [Thumbnail thumbnailWithImage:image
@@ -221,11 +228,33 @@ static const NSString *PlayerItemStatusContext;
 }
 
 - (void)loadMediaOptions {
-    
+    AVMediaSelectionGroup *group = [self.asset mediaSelectionGroupForMediaCharacteristic:AVMediaCharacteristicLegible];
+    if (group) {
+        NSMutableArray *subtitles = [NSMutableArray array];
+        for (AVMediaSelectionOption *option in group.options) {
+            [subtitles addObject:option.displayName];
+        }
+        [self.transport setSubtitles:subtitles];
+    } else {
+        [self.transport setSubtitles:nil];
+    }
 }
 
 - (void)subtitleSelected:(NSString *)subtitle{
+    AVMediaSelectionGroup *group = [self.asset mediaSelectionGroupForMediaCharacteristic:AVMediaCharacteristicLegible];
+    BOOL selected = NO;
+    for (AVMediaSelectionOption *option in group.options) {
+        if ([option.displayName isEqualToString:subtitle]) {
+            [self.playerItem selectMediaOption:option
+                         inMediaSelectionGroup:group];
+            selected = YES;
+        }
+    }
     
+    if (!selected) {
+        [self.playerItem selectMediaOption:nil
+                     inMediaSelectionGroup:group];
+    }
 }
 
 #pragma mark - Housekeeping

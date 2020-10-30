@@ -11,10 +11,12 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "NSTimer+BLAdditions.h"
 
-#define ENABLE_AIRPLAY 0
-#define ENABLE_SUBTITLES 0
+#import "SubtitleViewController.h"
 
-@interface OverlayView ()
+#define ENABLE_AIRPLAY 0
+#define ENABLE_SUBTITLES 1
+
+@interface OverlayView ()<SubtitleViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet FilmstripView *filmStripView;
@@ -257,17 +259,37 @@
     }
     _subtitles = filtered;
     if (_subtitles && _subtitles.count > 1) {
-        NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
+        NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolBar.items];
         UIImage *image = [UIImage imageNamed:@"subtitles"];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:image
-                                                                 style:UIBarButtonItemStyleBordered
+                                                                 style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(showSubtitles:)];
         [items addObject:item];
-        self.toolbar.items = items;
+        self.toolBar.items = items;
         [self calculateInfoViewOffset];
     }
 #endif
+}
+
+- (void)showSubtitles:(id)sender {
+    [self.timer invalidate];
+    [self.delegate pause];
+    self.lastPlaybackRate = [[(NSObject *)self.delegate valueForKey:@"lastPlaybackRate"] floatValue];
+    SubtitleViewController *controller = [[SubtitleViewController alloc] initWithSubtitles:self.subtitles];
+    controller.delegate = self;
+    controller.selectedSubtitle = self.selectedSubtitle ? self.selectedSubtitle : self.subtitles[0];
+    [self.window.rootViewController.presentedViewController presentViewController:controller
+                                                                         animated:YES
+                                                                       completion:nil];
+}
+
+- (void)subtitleSelected:(NSString *)subtitle{
+    self.selectedSubtitle = subtitle;
+    [self.delegate subtitleSelected:subtitle];
+    if (self.lastPlaybackRate > 0) {
+        [self.delegate play];x
+    }
 }
 
 @synthesize delegate;

@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setCurrentTime:(NSTimeInterval)time duration:(NSTimeInterval)duration;
 - (void)setScrubbingTime:(NSTimeInterval)time;
 - (void)playbackComplete;
-- (void)setSubtitles:(NSArray *)subtitles;
+- (void)setSubtitles:(nullable NSArray *)subtitles;
 
 @end
 

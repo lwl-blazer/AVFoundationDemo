@@ -30,6 +30,7 @@
 		25A9328A254AA23500464A44 /* hubblecast.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 25A93289254AA23500464A44 /* hubblecast.m4v */; };
 		25A93290254AA51300464A44 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9328F254AA51300464A44 /* PlayerController.m */; };
 		25A9329C254AA8A200464A44 /* Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A9329B254AA8A200464A44 /* Thumbnail.m */; };
+		25B799F4254C080200172BB7 /* SubtitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B799F3254C080200172BB7 /* SubtitleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		25A9329A254AA8A200464A44 /* Thumbnail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thumbnail.h; sourceTree = "<group>"; };
 		25A9329B254AA8A200464A44 /* Thumbnail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Thumbnail.m; sourceTree = "<group>"; };
 		25A932A0254AAACD00464A44 /* Transport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transport.h; sourceTree = "<group>"; };
+		25B799F2254C080200172BB7 /* SubtitleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubtitleViewController.h; sourceTree = "<group>"; };
+		25B799F3254C080200172BB7 /* SubtitleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubtitleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +236,8 @@
 				25A9328F254AA51300464A44 /* PlayerController.m */,
 				25A93282254AA04F00464A44 /* PlayerViewController.h */,
 				25A93283254AA04F00464A44 /* PlayerViewController.m */,
+				25B799F2254C080200172BB7 /* SubtitleViewController.h */,
+				25B799F3254C080200172BB7 /* SubtitleViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				25A932212549610200464A44 /* ViewController.m in Sources */,
 				25A9325B2549624900464A44 /* AVAsset+BLAdditions.m in Sources */,
 				25A93290254AA51300464A44 /* PlayerController.m in Sources */,
+				25B799F4254C080200172BB7 /* SubtitleViewController.m in Sources */,
 				25A9327D254A979900464A44 /* HCYoutubeParser.m in Sources */,
 				25A9326725497C0700464A44 /* NSTimer+BLAdditions.m in Sources */,
 				2508588F254AAF5A006E7A14 /* OverlayView.m in Sources */,

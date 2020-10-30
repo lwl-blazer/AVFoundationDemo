@@ -107,11 +107,77 @@
                         <viewLayoutGuide key="safeArea" id="PRF-Q7-RNO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="YAk-o4-9ns"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eq7-UB-7FG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1743" y="138"/>
+        </scene>
+        <!--Subtitle View Controller-->
+        <scene sceneID="aXu-0s-4TI">
+            <objects>
+                <viewController storyboardIdentifier="subtitleController" id="okE-HU-sex" customClass="SubtitleViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fWP-t1-Kjs">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7H-h4-EeG">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="w7B-hR-wZE"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Subtitles" id="KnU-l3-fJT">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="rPu-En-8q2">
+                                            <connections>
+                                                <action selector="close:" destination="okE-HU-sex" id="UyZ-6A-tKw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aC1-6C-iLb">
+                                <rect key="frame" x="0.0" y="44" width="896" height="370"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="370" id="MNc-qs-5oT"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="j0Y-SP-rb4">
+                                        <rect key="frame" x="0.0" y="28" width="896" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j0Y-SP-rb4" id="axV-PN-qSz">
+                                            <rect key="frame" x="44" y="0.0" width="808" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="okE-HU-sex" id="oVD-gm-fGh"/>
+                                    <outlet property="delegate" destination="okE-HU-sex" id="SNl-KL-7du"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kkO-A9-asN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d7H-h4-EeG" firstAttribute="top" secondItem="kkO-A9-asN" secondAttribute="top" id="BAO-pF-hN7"/>
+                            <constraint firstItem="aC1-6C-iLb" firstAttribute="trailing" secondItem="d7H-h4-EeG" secondAttribute="trailing" id="CwF-WC-GaP"/>
+                            <constraint firstItem="aC1-6C-iLb" firstAttribute="leading" secondItem="d7H-h4-EeG" secondAttribute="leading" id="Nfj-Od-gI3"/>
+                            <constraint firstItem="aC1-6C-iLb" firstAttribute="top" secondItem="d7H-h4-EeG" secondAttribute="bottom" id="PRR-dY-fNa"/>
+                            <constraint firstItem="aC1-6C-iLb" firstAttribute="leading" secondItem="fWP-t1-Kjs" secondAttribute="leading" id="VPt-2p-BUx"/>
+                            <constraint firstItem="d7H-h4-EeG" firstAttribute="leading" secondItem="fWP-t1-Kjs" secondAttribute="leading" id="ciL-bS-kfS"/>
+                            <constraint firstAttribute="trailing" secondItem="d7H-h4-EeG" secondAttribute="trailing" id="jKN-ug-eO8"/>
+                            <constraint firstAttribute="bottom" secondItem="aC1-6C-iLb" secondAttribute="bottom" id="qmd-70-YPj"/>
+                            <constraint firstAttribute="trailing" secondItem="aC1-6C-iLb" secondAttribute="trailing" id="yY0-BO-qEM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="aC1-6C-iLb" id="4As-UL-Zu0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OQc-QB-TA0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2418.75" y="137.68115942028987"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
