@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) id<TransportDelegate>delgate;
 
 - (void)setTitle:(NSString *)title;
-- (void)setCurrentTime:(NSTimer *)time duration:(NSTimeInterval)duration;
+- (void)setCurrentTime:(NSTimeInterval)time duration:(NSTimeInterval)duration;
 - (void)setScrubbingTime:(NSTimeInterval)time;
 - (void)playbackComplete;
 - (void)setSubtitles:(NSArray *)subtitles;
