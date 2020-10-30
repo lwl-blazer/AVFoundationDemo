@@ -288,7 +288,7 @@
     self.selectedSubtitle = subtitle;
     [self.delegate subtitleSelected:subtitle];
     if (self.lastPlaybackRate > 0) {
-        [self.delegate play];x
+        [self.delegate play];
     }
 }
 

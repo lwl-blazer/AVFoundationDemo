@@ -14,7 +14,7 @@
 #define LOCAL_SEGUE @"localSegue"
 #define STREAMING_SEGUE @"streamingSegue"
 
-#define YOUTUBE_URL @"http://www.youtube.com/watch?v=6dNryy5elc8"
+#define YOUTUBE_URL @"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
 
 @interface ViewController ()
 
@@ -29,10 +29,10 @@
     [super viewDidLoad];
     
     self.localURL = [[NSBundle mainBundle] URLForResource:@"hubblecast" withExtension:@"m4v"];
-    
-    [HCYoutubeParser h264videosWithYoutubeURL:[NSURL URLWithString:YOUTUBE_URL] completeBlock:^(NSDictionary *videoDictionary, NSError *error) {
-        self.streamingURL = [NSURL URLWithString:videoDictionary[@"hd720"]];
-    }];
+    self.streamingURL = [NSURL URLWithString:YOUTUBE_URL];
+//    [HCYoutubeParser h264videosWithYoutubeURL:[NSURL URLWithString:YOUTUBE_URL] completeBlock:^(NSDictionary *videoDictionary, NSError *error) {
+//        self.streamingURL = [NSURL URLWithString:videoDictionary[@"hd720"]];
+//    }];
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
