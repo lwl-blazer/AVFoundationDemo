@@ -63,7 +63,6 @@
         [self.scrollView addSubview:button];
         currentX += imageSize.width;
     }
-    
 }
 
 - (void)imageButtonTapped:(UIButton *)sender {

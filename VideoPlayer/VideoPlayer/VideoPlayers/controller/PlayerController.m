@@ -209,6 +209,18 @@ static const NSString *PlayerItemStatusContext;
     __block NSMutableArray *images = [NSMutableArray array];
     [self.imageGenerator generateCGImagesAsynchronouslyForTimes:times
                                               completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable imageRef, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) { //requestedTime 请求的最初时间 imageRef actualTime 图片实际生成的时间。其于实际效率，这个值可能与请求时不同，可以通过在AVAssetImageGenertor设置requestedTimeToleranceBefore和requestTimeToleranceAfter来调整requestTime和actualTime的接近程序    result 状态
+        /**
+        //返回 asset指定时间的imageRef
+         CGImageRef imageCopy = [self.imageGenerator copyCGImageAtTime:requestedTime
+                                    actualTime:&actualTime error:nil];
+         CFRelease(imageRef);
+         
+         讨论这个方法为什么需要两个时间：
+                1.actualTime 使用的 fps * 1000 当每秒的帧率 (float fps = [[[self.asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] nominalFrameRate];)
+                2.requestedTime 和 actualTime 相差很远, 为什么requestedTime和actualTime不想等， 根据文档,当你想要一个时间点的某一帧的时候，它会在一个范围内找，如果有缓存，或者有在索引内的关键帧，就直接返回，从而优化性能。
+                通过requestedTimeToleranceBefore requestedTimeToleranceAfter
+        */
+        
         if (result == AVAssetImageGeneratorSucceeded) {
             UIImage *image = [UIImage imageWithCGImage:imageRef];
             Thumbnail *thumbnail = [Thumbnail thumbnailWithImage:image
