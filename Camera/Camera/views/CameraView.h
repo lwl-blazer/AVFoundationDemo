@@ -7,12 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
-
 NS_ASSUME_NONNULL_BEGIN
-
+@class PreviewView, OverlayView;
 @interface CameraView : UIView
 
-
+@property (weak, nonatomic) IBOutlet PreviewView *previewView;
+@property (weak, nonatomic) IBOutlet OverlayView *controlView;
 
 @end
 

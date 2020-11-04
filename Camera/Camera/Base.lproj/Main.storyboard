@@ -50,6 +50,9 @@
                                             <constraint firstItem="ESG-Wo-pWB" firstAttribute="centerY" secondItem="MXS-vp-Uo9" secondAttribute="centerY" id="TGt-2t-YF9"/>
                                             <constraint firstItem="yn6-0f-K4O" firstAttribute="leading" secondItem="MXS-vp-Uo9" secondAttribute="leading" constant="70" id="aqQ-js-l4M"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="captureButton" destination="ESG-Wo-pWB" id="vQG-S2-I05"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxY-47-lZA" customClass="StatusView">
                                         <rect key="frame" x="0.0" y="8" width="414" height="48"/>

@@ -6,10 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AssetsLibrary : NSObject
+
+- (void)writeImage:(UIImage *)image;
+- (void)writeVideo:(NSURL *)videoURL;
 
 @end
 
