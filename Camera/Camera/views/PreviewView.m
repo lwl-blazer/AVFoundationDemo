@@ -52,6 +52,12 @@
     [(AVCaptureVideoPreviewLayer *)self.layer setSession:session];
 }
 
+// 将屏幕坐标系上的触控点转换为摄像头坐标系上的点
+- (CGPoint)captureDevicePointForPoint:(CGPoint)point{
+    AVCaptureVideoPreviewLayer *layer = (AVCaptureVideoPreviewLayer *)self.layer;
+    return [layer captureDevicePointOfInterestForPoint:point];
+}
+
 - (void)setupView{
     [(AVCaptureVideoPreviewLayer *)self.layer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     
@@ -101,11 +107,6 @@
     if (self.delegate) {
         [self.delegate tappedToResetFocusAndExposure];
     }
-}
-
-- (CGPoint)captureDevicePointForPoint:(CGPoint)point{
-    AVCaptureVideoPreviewLayer *layer = (AVCaptureVideoPreviewLayer *)self.layer;
-    return [layer captureDevicePointOfInterestForPoint:point];
 }
 
 - (void)runBoxAnimationOnView:(UIView *)view point:(CGPoint)point{

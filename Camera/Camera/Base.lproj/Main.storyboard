@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXS-vp-Uo9" customClass="CameraModeView">
-                                        <rect key="frame" x="0.0" y="690" width="414" height="110"/>
+                                        <rect key="frame" x="0.0" y="708" width="414" height="110"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yn6-0f-K4O">
                                                 <rect key="frame" x="70" y="33" width="44" height="44"/>
@@ -33,43 +33,52 @@
                                                     <constraint firstAttribute="height" constant="44" id="XhA-wJ-cdZ"/>
                                                     <constraint firstAttribute="width" constant="44" id="sdc-9V-ZMT"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="showCameraRoll:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y3F-1Q-iIi"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESG-Wo-pWB" customClass="CaptureButton">
-                                                <rect key="frame" x="173" y="21" width="68" height="68"/>
+                                                <rect key="frame" x="173" y="34" width="68" height="68"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="68" id="7KK-4c-9vl"/>
-                                                    <constraint firstAttribute="height" constant="68" id="VqZ-CL-ST0"/>
+                                                    <constraint firstAttribute="width" constant="68" id="GEc-24-XNz"/>
+                                                    <constraint firstAttribute="height" constant="68" id="qbX-Ex-GTa"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="captureOrRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Div-V7-RZ2"/>
+                                                </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="110" id="BXl-gN-7Es"/>
                                             <constraint firstItem="yn6-0f-K4O" firstAttribute="centerY" secondItem="MXS-vp-Uo9" secondAttribute="centerY" id="RRl-KO-PbT"/>
-                                            <constraint firstItem="ESG-Wo-pWB" firstAttribute="centerX" secondItem="MXS-vp-Uo9" secondAttribute="centerX" id="Rhw-gv-J1j"/>
-                                            <constraint firstItem="ESG-Wo-pWB" firstAttribute="centerY" secondItem="MXS-vp-Uo9" secondAttribute="centerY" id="TGt-2t-YF9"/>
+                                            <constraint firstAttribute="bottom" secondItem="ESG-Wo-pWB" secondAttribute="bottom" constant="8" id="VxU-pl-Qco"/>
                                             <constraint firstItem="yn6-0f-K4O" firstAttribute="leading" secondItem="MXS-vp-Uo9" secondAttribute="leading" constant="70" id="aqQ-js-l4M"/>
+                                            <constraint firstItem="ESG-Wo-pWB" firstAttribute="centerX" secondItem="MXS-vp-Uo9" secondAttribute="centerX" id="j18-kV-MZu"/>
                                         </constraints>
                                         <connections>
+                                            <action selector="cameraModeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="FNT-BP-MJi"/>
                                             <outlet property="captureButton" destination="ESG-Wo-pWB" id="vQG-S2-I05"/>
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxY-47-lZA" customClass="StatusView">
-                                        <rect key="frame" x="0.0" y="8" width="414" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ccc-cy-nUe" customClass="FlashControl">
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ccc-cy-nUe" customClass="FlashControl">
                                                 <rect key="frame" x="20" y="0.0" width="48" height="48"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="4Dh-XZ-BHP"/>
-                                                    <constraint firstAttribute="width" constant="48" id="e9E-DB-6bc"/>
-                                                </constraints>
+                                                <connections>
+                                                    <action selector="flashControlChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="C6E-U0-szv"/>
+                                                </connections>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5UY-Eo-eS9">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5UY-Eo-eS9">
                                                 <rect key="frame" x="350" y="0.0" width="56" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="56" id="U4y-6i-3Pl"/>
                                                 </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="camera_icon"/>
                                                 <connections>
                                                     <action selector="swapCarmers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GCq-Wc-EW4"/>
@@ -87,8 +96,6 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="Ccc-cy-nUe" firstAttribute="leading" secondItem="FxY-47-lZA" secondAttribute="leading" constant="20" symbolic="YES" id="9wY-4v-s9v"/>
-                                            <constraint firstItem="Ccc-cy-nUe" firstAttribute="centerY" secondItem="FxY-47-lZA" secondAttribute="centerY" id="X6E-7X-yP4"/>
                                             <constraint firstAttribute="bottom" secondItem="5UY-Eo-eS9" secondAttribute="bottom" id="aTT-Hz-5im"/>
                                             <constraint firstAttribute="trailing" secondItem="5UY-Eo-eS9" secondAttribute="trailing" constant="8" id="bUS-Ve-SH9"/>
                                             <constraint firstItem="c1b-Kj-w56" firstAttribute="centerY" secondItem="FxY-47-lZA" secondAttribute="centerY" id="cTW-Iz-U9R"/>
@@ -106,9 +113,9 @@
                                 <constraints>
                                     <constraint firstItem="MXS-vp-Uo9" firstAttribute="leading" secondItem="9SZ-oz-nOD" secondAttribute="leading" id="1Md-Zr-1wm"/>
                                     <constraint firstAttribute="trailing" secondItem="MXS-vp-Uo9" secondAttribute="trailing" id="2O5-tq-7dK"/>
-                                    <constraint firstItem="FxY-47-lZA" firstAttribute="top" secondItem="9SZ-oz-nOD" secondAttribute="top" constant="8" id="E5R-Yi-pdi"/>
+                                    <constraint firstItem="FxY-47-lZA" firstAttribute="top" secondItem="9SZ-oz-nOD" secondAttribute="top" id="E5R-Yi-pdi"/>
                                     <constraint firstAttribute="trailing" secondItem="FxY-47-lZA" secondAttribute="trailing" id="LIE-1y-ykL"/>
-                                    <constraint firstAttribute="bottom" secondItem="MXS-vp-Uo9" secondAttribute="bottom" constant="18" id="nRe-a9-GTn"/>
+                                    <constraint firstAttribute="bottom" secondItem="MXS-vp-Uo9" secondAttribute="bottom" id="nRe-a9-GTn"/>
                                     <constraint firstItem="FxY-47-lZA" firstAttribute="leading" secondItem="9SZ-oz-nOD" secondAttribute="leading" id="v86-DT-Onp"/>
                                 </constraints>
                                 <connections>

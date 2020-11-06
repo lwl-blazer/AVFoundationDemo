@@ -105,7 +105,7 @@ static const CGFloat FONT_SIZE = 17.0f;
         }completion:^(BOOL finished) {
             [self performDelegateSelectorIfSupported:@selector(flashControlDidExpand)];
         }];
-    } else {
+    } else { // 折叠
         [self performDelegateSelectorIfSupported:@selector(flashControlWillCollapse)];
         UITouch *touch = [[event allTouches] anyObject];
         for (NSUInteger i = 0; i < self.labels.count; i++) {

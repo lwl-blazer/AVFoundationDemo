@@ -52,8 +52,9 @@
     _maxRight = YES;
     self.cameraMode = CameraModeVideo;
     
-    self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    _foregroundColor = [UIColor colorWithRed:1.0 green:0.734 blue:0.006 alpha:1.00];
+    self.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.500];
+    _foregroundColor = [UIColor colorWithRed:1.000 green:0.734 blue:0.006 alpha:1.000];
+    
     _videoTextLayer = [self textLayerWithTitle:@"VIDEO"];
     _videoTextLayer.foregroundColor = self.foregroundColor.CGColor;
     
@@ -71,8 +72,7 @@
     
     [_labelContainerView.layer addSublayer:_videoTextLayer];
     [_labelContainerView.layer addSublayer:_photoTextLayer];
-    
-    _labelContainerView.backgroundColor = [UIColor clearColor];
+
     [self addSubview:_labelContainerView];
     
     self.labelContainerView.centerY += 8.0f;
@@ -89,7 +89,7 @@
 
 - (CATextLayer *)textLayerWithTitle:(NSString *)title{
     CATextLayer *layer = [CATextLayer layer];
-    layer.string = [[NSAttributedString alloc] initWithString:title];
+    layer.string = [[NSAttributedString alloc] initWithString:title attributes:[self fontAttributes]];
     layer.contentsScale = [UIScreen mainScreen].scale;
     return layer;
 }
@@ -99,6 +99,7 @@
 }
 
 - (void)switchMode:(UISwipeGestureRecognizer *)sender{
+    NSLog(@"switchMode");
     if (sender.direction == UISwipeGestureRecognizerDirectionLeft && !self.maxLeft) {
         [UIView animateWithDuration:0.28
                               delay:0
@@ -158,7 +159,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, self.foregroundColor.CGColor);
     
-    CGRect circleRect = CGRectMake(CGRectGetMidX(rect) - 4, 2.0f, 6.0f, 6.0f);
+    CGRect circleRect = CGRectMake(CGRectGetMidX(rect) - 4.0f, 2.0f, 6.0f, 6.0f);
     CGContextFillEllipseInRect(context, circleRect);
 }
 
