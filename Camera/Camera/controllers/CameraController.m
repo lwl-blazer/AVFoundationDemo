@@ -7,15 +7,20 @@
 
 #import "CameraController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
+#import <CoreMedia/CoreMedia.h>
+
 #import "NSFileManager+BLAdditions.h"
 
 NSString *const ThumbnailCreateNotification = @"ThumbnailCreated";
 
-@interface CameraController ()<AVCapturePhotoCaptureDelegate>
+@interface CameraController ()<AVCapturePhotoCaptureDelegate, AVCaptureFileOutputRecordingDelegate>
 
 @property(nonatomic, strong) dispatch_queue_t videoQueue;
 @property(nonatomic, strong) AVCaptureSession *captureSession;
 @property(nonatomic, weak) AVCaptureDeviceInput *activeVideoInput;
+@property(nonatomic, strong) AVCapturePhotoSettings *photoSetting;
 @property(nonatomic, strong) AVCapturePhotoOutput *imageOutput;
 @property(nonatomic, strong) AVCaptureMovieFileOutput *movieOutput;
 
@@ -59,7 +64,8 @@ NSString *const ThumbnailCreateNotification = @"ThumbnailCreated";
         [self.captureSession addOutput:self.imageOutput];
     }
     // 必须先添加到capturesession 才能设置
-    [self.imageOutput capturePhotoWithSettings:[AVCapturePhotoSettings photoSettingsWithFormat:@{AVVideoCodecKey:AVVideoCodecJPEG}] delegate:self];
+    self.photoSetting = [AVCapturePhotoSettings photoSettingsWithFormat:@{AVVideoCodecKey:AVVideoCodecJPEG}];
+    self.photoSetting.flashMode = AVCaptureFlashModeAuto;
     
     self.movieOutput = [[AVCaptureMovieFileOutput alloc] init];
     if ([self.captureSession canAddOutput:self.movieOutput]) {
@@ -319,7 +325,7 @@ static const NSString *CameraAdjustingExposureContext;
 - (BOOL)cameraHasFlash {
 
     // Listing 6.11
-    return [[self activeCamera] hasFlash];;
+    return [[self activeCamera] hasFlash];
 }
 
 - (AVCaptureFlashMode)flashMode {
@@ -329,9 +335,10 @@ static const NSString *CameraAdjustingExposureContext;
 }
 
 - (void)setFlashMode:(AVCaptureFlashMode)flashMode {
-
     // Listing 6.11
-   
+    if ([self.imageOutput.supportedFlashModes containsObject:@(flashMode)]) {
+        self.imageOutput.photoSettingsForSceneMonitoring.flashMode = flashMode;
+    }
 }
 
 - (BOOL)cameraHasTorch {
@@ -370,6 +377,12 @@ static const NSString *CameraAdjustingExposureContext;
 
     // Listing 6.12
 
+    AVCaptureConnection *connection = [self.imageOutput connectionWithMediaType:AVMediaTypeVideo];
+    if (connection.isVideoOrientationSupported) {
+        connection.videoOrientation = [self currentVideoOrientation];
+    }
+    
+    [self.imageOutput capturePhotoWithSettings:self.photoSetting delegate:self];
 }
 
 - (AVCaptureVideoOrientation)currentVideoOrientation {
@@ -377,21 +390,46 @@ static const NSString *CameraAdjustingExposureContext;
     // Listing 6.12
     
     // Listing 6.13
-    
-    return 0;
+    AVCaptureVideoOrientation orientation;
+    switch ([UIDevice currentDevice].orientation) {
+        case UIDeviceOrientationPortrait:
+            orientation = AVCaptureVideoOrientationPortrait;
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            orientation = AVCaptureVideoOrientationLandscapeLeft;
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            orientation = AVCaptureVideoOrientationLandscapeRight;
+            break;
+        default:
+            orientation = AVCaptureVideoOrientationLandscapeRight;
+            break;
+    }
+    return orientation;
 }
 
 
 - (void)writeImageToAssetsLibrary:(UIImage *)image {
 
     // Listing 6.13
-    
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        if (success) {
+            NSLog(@"save photo success");
+            [self postThumbnailNotifification:image];
+        } else {
+            NSLog(@"save photo faile:%@", error.localizedDescription);
+            [self.delegate assetLibraryWriteFailedWithError:error];
+        }
+    }];
 }
 
 - (void)postThumbnailNotifification:(UIImage *)image {
 
     // Listing 6.13
-    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:ThumbnailCreateNotification object:image];
 }
 
 #pragma mark - Video Capture Methods
@@ -399,14 +437,36 @@ static const NSString *CameraAdjustingExposureContext;
 - (BOOL)isRecording {
 
     // Listing 6.14
-    
-    return NO;
+    return self.movieOutput.isRecording;
 }
 
 - (void)startRecording {
 
     // Listing 6.14
-
+    if (![self isRecording]) {
+        AVCaptureConnection *videoConnection = [self.movieOutput connectionWithMediaType:AVMediaTypeVideo];
+        if ([videoConnection isVideoOrientationSupported]) {
+        }
+        
+        if ([videoConnection isVideoStabilizationSupported]) {
+            videoConnection.enablesVideoStabilizationWhenAvailable = YES;
+        }
+        
+        AVCaptureDevice *device = [self activeCamera];
+        if (device.isSmoothAutoFocusSupported) {
+            NSError *error;
+            if ([device lockForConfiguration:&error]) {
+                device.smoothAutoFocusEnabled = YES;
+                [device unlockForConfiguration];
+            } else {
+                [self.delegate deviceConfigurationFailedWithError:error];
+            }
+        }
+        
+        self.outputURL = [self uniqueURL];
+        [self.movieOutput startRecordingToOutputFileURL:self.outputURL
+                                      recordingDelegate:self];
+    }
 }
 
 - (CMTime)recordedDuration {
@@ -415,15 +475,22 @@ static const NSString *CameraAdjustingExposureContext;
 
 - (NSURL *)uniqueURL {
 
-
     // Listing 6.14
-    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *dirPath = [fileManager temporaryDirectoryWithTemplateString:@"camera.XXXXXX"];
+    if (dirPath) {
+        NSString *filePath = [dirPath stringByAppendingPathComponent:@"camera_movie.mov"];
+        return [NSURL fileURLWithPath:filePath];
+    }
     return nil;
 }
 
 - (void)stopRecording {
 
     // Listing 6.14
+    if ([self isRecording]) {
+        [self.movieOutput stopRecording];
+    }
 }
 
 #pragma mark - AVCaptureFileOutputRecordingDelegate
@@ -434,27 +501,52 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
                 error:(NSError *)error {
 
     // Listing 6.15
-
+    if (error) {
+        [self.delegate mediaCaptureFaileWithError:error];
+    } else {
+        [self writeVideoToAssetsLibrary:[self.outputURL copy]];
+    }
+    self.outputURL = nil;
 }
 
 - (void)writeVideoToAssetsLibrary:(NSURL *)videoURL {
 
     // Listing 6.15
-    
+  
 }
 
 - (void)generateThumbnailForVideoAtURL:(NSURL *)videoURL {
 
     // Listing 6.15
-    
+    dispatch_async(self.videoQueue, ^{
+        AVAsset *asset = [AVAsset assetWithURL:videoURL];
+        AVAssetImageGenerator *imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
+        imageGenerator.maximumSize = CGSizeMake(100, 0.0);
+        imageGenerator.appliesPreferredTrackTransform = YES;
+        
+        CGImageRef imageRef = [imageGenerator copyCGImageAtTime:kCMTimeZero
+                                                     actualTime:NULL
+                                                          error:nil];
+        
+        UIImage *image = [UIImage imageWithCGImage:imageRef];
+        CGImageRelease(imageRef);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self postThumbnailNotifification:image];
+        });
+    });
 }
 
 
-#pragma mark --
+#pragma mark -- AVCapturePhotoCaptureDelegate
 - (void)captureOutput:(AVCapturePhotoOutput *)output didFinishProcessingPhoto:(AVCapturePhoto *)photo error:(NSError *)error API_AVAILABLE(ios(11.0)){
-    
+    if (photo.CGImageRepresentation) {
+        [self writeImageToAssetsLibrary:[UIImage imageWithCGImage:photo.CGImageRepresentation]];
+    }
 }
 
-
+- (void)captureOutput:(AVCapturePhotoOutput *)output didFinishProcessingPhotoSampleBuffer:(CMSampleBufferRef)photoSampleBuffer previewPhotoSampleBuffer:(CMSampleBufferRef)previewPhotoSampleBuffer resolvedSettings:(AVCaptureResolvedPhotoSettings *)resolvedSettings bracketSettings:(AVCaptureBracketedStillImageSettings *)bracketSettings error:(NSError *)error API_AVAILABLE(ios(10.0)){
+    [self writeImageToAssetsLibrary:[UIImage imageWithData:[AVCapturePhotoOutput JPEGPhotoDataRepresentationForJPEGSampleBuffer:photoSampleBuffer
+                                                                                                       previewPhotoSampleBuffer:previewPhotoSampleBuffer]]];
+}
 
 @end

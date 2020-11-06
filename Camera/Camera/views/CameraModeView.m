@@ -49,10 +49,11 @@
 }
 
 - (void)setupView{
+    /*
     _maxRight = YES;
     self.cameraMode = CameraModeVideo;
     
-    self.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.500];
+    //self.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.500];
     _foregroundColor = [UIColor colorWithRed:1.000 green:0.734 blue:0.006 alpha:1.000];
     
     _videoTextLayer = [self textLayerWithTitle:@"VIDEO"];
@@ -75,7 +76,7 @@
 
     [self addSubview:_labelContainerView];
     
-    self.labelContainerView.centerY += 8.0f;
+    self.labelContainerView.centerY += 8.0f;*/
     UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                                                           action:@selector(switchMode:)];
     
@@ -141,10 +142,10 @@
         if (cameraMode == CameraModePhoto) {
             self.captureButton.selected = NO;
             self.captureButton.captureButtonMode = CaptureButtonModePhoto;
-            self.layer.backgroundColor = [UIColor blackColor].CGColor;
+            //self.layer.backgroundColor = [UIColor blackColor].CGColor;
         } else {
             self.captureButton.captureButtonMode = CaptureButtonModeVideo;
-            self.layer.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f].CGColor;
+           // self.layer.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f].CGColor;
         }
         [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
@@ -156,16 +157,16 @@
 }
 
 - (void)drawRect:(CGRect)rect{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, self.foregroundColor.CGColor);
-    
-    CGRect circleRect = CGRectMake(CGRectGetMidX(rect) - 4.0f, 2.0f, 6.0f, 6.0f);
-    CGContextFillEllipseInRect(context, circleRect);
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetFillColorWithColor(context, self.foregroundColor.CGColor);
+//
+//    CGRect circleRect = CGRectMake(CGRectGetMidX(rect) - 4.0f, 2.0f, 6.0f, 6.0f);
+//    CGContextFillEllipseInRect(context, circleRect);
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    self.labelContainerView.frameX = CGRectGetMidX(self.bounds) - (self.videoStringWidth / 2.0f);
+//    self.labelContainerView.frameX = CGRectGetMidX(self.bounds) - (self.videoStringWidth / 2.0f);
 }
 
 @end
