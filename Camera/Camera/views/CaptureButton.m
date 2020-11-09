@@ -106,8 +106,8 @@
         animationGroup.beginTime = CACurrentMediaTime() + 0.2f;
         animationGroup.duration = 0.35f;
         
-        [self.circleLayer setValue:radiusAnimation forKey:@"cornerRadius"];
-        [self.circleLayer setValue:scaleAnimation forKey:@"transform.scale"];
+        [self.circleLayer setValue:radiusAnimation.toValue forKey:@"cornerRadius"];
+        [self.circleLayer setValue:scaleAnimation.toValue forKey:@"transform.scale"];
         
         [self.circleLayer addAnimation:animationGroup forKey:@"scaleAndRadiusAnimation"];
     }

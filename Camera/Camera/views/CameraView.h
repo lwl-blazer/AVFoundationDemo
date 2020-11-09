@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class PreviewView, OverlayView;
-@interface CameraView : UIView
+@interface CameraView : UIControl
 
 @property (weak, nonatomic) IBOutlet PreviewView *previewView;
 @property (weak, nonatomic) IBOutlet OverlayView *controlView;

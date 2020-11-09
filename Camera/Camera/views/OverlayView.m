@@ -26,7 +26,6 @@
     self.statusView.elapsedTimeLabel.layer.opacity = toOpacity;
 }
 
-
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event{
     if ([self.statusView pointInside:[self convertPoint:point toView:self.statusView] withEvent:event]) {
         [self.modeView pointInside:[self convertPoint:point toView:self.modeView] withEvent:event];
