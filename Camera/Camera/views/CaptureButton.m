@@ -88,11 +88,13 @@
 }
 
 - (void)setSelected:(BOOL)selected{
+    
     [super setSelected:selected];
     if (self.captureButtonMode == CaptureButtonModeVideo) {
         [CATransaction disableActions];
         CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
         CABasicAnimation *radiusAnimation = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
+
         if (selected) {
             scaleAnimation.toValue = @0.6f;
             radiusAnimation.toValue = @(self.circleLayer.bounds.size.width / 4.0f);
@@ -107,8 +109,7 @@
         animationGroup.duration = 0.35f;
         
         [self.circleLayer setValue:radiusAnimation.toValue forKey:@"cornerRadius"];
-        [self.circleLayer setValue:scaleAnimation.toValue forKey:@"transform.scale"];
-        
+        [self.circleLayer setValue:scaleAnimation.toValue forKeyPath:@"transform.scale"];
         [self.circleLayer addAnimation:animationGroup forKey:@"scaleAndRadiusAnimation"];
     }
 }

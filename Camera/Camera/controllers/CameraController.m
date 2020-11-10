@@ -20,7 +20,6 @@ NSString *const ThumbnailCreateNotification = @"ThumbnailCreated";
 @property(nonatomic, strong) dispatch_queue_t videoQueue;
 @property(nonatomic, strong) AVCaptureSession *captureSession;
 @property(nonatomic, weak) AVCaptureDeviceInput *activeVideoInput;
-@property(nonatomic, strong) AVCapturePhotoSettings *photoSetting;
 @property(nonatomic, strong) AVCapturePhotoOutput *imageOutput;
 @property(nonatomic, strong) AVCaptureMovieFileOutput *movieOutput;
 
@@ -63,10 +62,7 @@ NSString *const ThumbnailCreateNotification = @"ThumbnailCreated";
     if ([self.captureSession canAddOutput:self.imageOutput]) {
         [self.captureSession addOutput:self.imageOutput];
     }
-    // 必须先添加到capturesession 才能设置
-    self.photoSetting = [AVCapturePhotoSettings photoSettingsWithFormat:@{AVVideoCodecKey:AVVideoCodecJPEG}];
-    self.photoSetting.flashMode = AVCaptureFlashModeAuto;
-    
+   
     self.movieOutput = [[AVCaptureMovieFileOutput alloc] init];
     if ([self.captureSession canAddOutput:self.movieOutput]) {
         [self.captureSession addOutput:self.movieOutput];
@@ -376,13 +372,14 @@ static const NSString *CameraAdjustingExposureContext;
 - (void)captureStillImage {
 
     // Listing 6.12
-
     AVCaptureConnection *connection = [self.imageOutput connectionWithMediaType:AVMediaTypeVideo];
     if (connection.isVideoOrientationSupported) {
         connection.videoOrientation = [self currentVideoOrientation];
     }
-    
-    [self.imageOutput capturePhotoWithSettings:self.photoSetting delegate:self];
+   //不能全局持有
+    AVCapturePhotoSettings *photoSetting = [AVCapturePhotoSettings photoSettingsWithFormat:@{AVVideoCodecKey:AVVideoCodecJPEG}];
+    photoSetting.flashMode = AVCaptureFlashModeAuto;
+    [self.imageOutput capturePhotoWithSettings:photoSetting delegate:self];
 }
 
 - (AVCaptureVideoOrientation)currentVideoOrientation {
@@ -415,18 +412,19 @@ static const NSString *CameraAdjustingExposureContext;
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
         [PHAssetChangeRequest creationRequestForAssetFromImage:image];
     } completionHandler:^(BOOL success, NSError * _Nullable error) {
-        if (success) {
-            NSLog(@"save photo success");
-            [self postThumbnailNotifification:image];
-        } else {
-            NSLog(@"save photo faile:%@", error.localizedDescription);
-            [self.delegate assetLibraryWriteFailedWithError:error];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                NSLog(@"save photo success");
+                [self postThumbnailNotifification:image];
+            } else {
+                NSLog(@"save photo faile:%@", error.localizedDescription);
+                [self.delegate assetLibraryWriteFailedWithError:error];
+            }
+        });
     }];
 }
 
 - (void)postThumbnailNotifification:(UIImage *)image {
-
     // Listing 6.13
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc postNotificationName:ThumbnailCreateNotification object:image];

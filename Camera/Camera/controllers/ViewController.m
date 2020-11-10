@@ -89,8 +89,8 @@
     return player;
 }
 
-- (IBAction)cameraModeChanged:(id)sender {
-    self.cameraMode = [sender cameraMode];
+- (IBAction)cameraModeChanged:(CameraModeView *)sender {
+    self.cameraMode = sender.cameraMode;
 }
 
 - (IBAction)swapCarmers:(UIButton *)sender {

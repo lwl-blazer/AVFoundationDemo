@@ -84,10 +84,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laf-ec-F1u" customClass="CameraModeView">
                                 <rect key="frame" x="0.0" y="752" width="414" height="110"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIp-Lu-KJV" customClass="CaptureButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIp-Lu-KJV" customClass="CaptureButton">
                                         <rect key="frame" x="173" y="34" width="68" height="68"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="68" id="h3b-dI-pcM"/>
+                                            <constraint firstAttribute="height" constant="68" id="kPk-aU-eIN"/>
+                                        </constraints>
                                         <state key="normal">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -95,10 +98,13 @@
                                             <action selector="captureOrRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LGg-n6-33a"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Tr-sm-QeA">
-                                        <rect key="frame" x="40" y="45" width="45" height="45"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Tr-sm-QeA">
+                                        <rect key="frame" x="8" y="57" width="45" height="45"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="0UD-8v-mjm"/>
+                                            <constraint firstAttribute="width" constant="45" id="vDU-pT-l75"/>
+                                        </constraints>
                                         <state key="normal">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -109,9 +115,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="BIp-Lu-KJV" secondAttribute="bottom" constant="8" id="49J-BD-zK8"/>
+                                    <constraint firstItem="4Tr-sm-QeA" firstAttribute="leading" secondItem="laf-ec-F1u" secondAttribute="leading" constant="8" id="SMp-2k-zBY"/>
+                                    <constraint firstAttribute="bottom" secondItem="4Tr-sm-QeA" secondAttribute="bottom" constant="8" id="SyB-fu-sEW"/>
+                                    <constraint firstItem="BIp-Lu-KJV" firstAttribute="centerX" secondItem="laf-ec-F1u" secondAttribute="centerX" id="lKk-7Q-E6J"/>
                                     <constraint firstAttribute="height" constant="110" id="wP0-Jk-SUe"/>
                                 </constraints>
                                 <connections>
+                                    <action selector="cameraModeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="BUu-24-YB3"/>
                                     <outlet property="captureButton" destination="BIp-Lu-KJV" id="4JC-Ae-jmf"/>
                                 </connections>
                             </view>
