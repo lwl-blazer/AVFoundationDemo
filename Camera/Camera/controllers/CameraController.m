@@ -395,8 +395,8 @@ static const NSString *CameraAdjustingExposureContext;
         case UIDeviceOrientationLandscapeRight:
             orientation = AVCaptureVideoOrientationLandscapeLeft;
             break;
-        case UIDeviceOrientationLandscapeLeft:
-            orientation = AVCaptureVideoOrientationLandscapeRight;
+        case UIDeviceOrientationPortraitUpsideDown:
+            orientation = AVCaptureVideoOrientationPortraitUpsideDown;
             break;
         default:
             orientation = AVCaptureVideoOrientationLandscapeRight;
@@ -407,7 +407,6 @@ static const NSString *CameraAdjustingExposureContext;
 
 
 - (void)writeImageToAssetsLibrary:(UIImage *)image {
-
     // Listing 6.13
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
         [PHAssetChangeRequest creationRequestForAssetFromImage:image];
@@ -446,8 +445,8 @@ static const NSString *CameraAdjustingExposureContext;
         if ([videoConnection isVideoOrientationSupported]) {
         }
         
-        if ([videoConnection isVideoStabilizationSupported]) {
-            videoConnection.enablesVideoStabilizationWhenAvailable = YES;
+        if ([videoConnection isVideoStabilizationSupported]) { // 稳定性
+            videoConnection.preferredVideoStabilizationMode = AVCaptureVideoStabilizationModeStandard;
         }
         
         AVCaptureDevice *device = [self activeCamera];
@@ -508,9 +507,18 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
 }
 
 - (void)writeVideoToAssetsLibrary:(NSURL *)videoURL {
-
     // Listing 6.15
-  
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:videoURL];
+        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+            if (success) {
+                NSLog(@"save video success");
+                [self generateThumbnailForVideoAtURL:videoURL];
+            } else {
+                NSLog(@"save video faile");
+                [self.delegate assetLibraryWriteFailedWithError:error];
+            }
+        }];
 }
 
 - (void)generateThumbnailForVideoAtURL:(NSURL *)videoURL {
