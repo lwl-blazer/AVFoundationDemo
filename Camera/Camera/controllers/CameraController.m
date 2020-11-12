@@ -11,6 +11,7 @@
 #import <Photos/Photos.h>
 #import <CoreMedia/CoreMedia.h>
 
+#import "UIImage+BLAdditions.h"
 #import "NSFileManager+BLAdditions.h"
 
 NSString *const ThumbnailCreateNotification = @"ThumbnailCreated";
@@ -378,7 +379,7 @@ static const NSString *CameraAdjustingExposureContext;
     }
    //不能全局持有
     AVCapturePhotoSettings *photoSetting = [AVCapturePhotoSettings photoSettingsWithFormat:@{AVVideoCodecKey:AVVideoCodecJPEG}];
-    photoSetting.flashMode = AVCaptureFlashModeAuto;
+    photoSetting.flashMode = AVCaptureFlashModeOff;
     [self.imageOutput capturePhotoWithSettings:photoSetting delegate:self];
 }
 
@@ -390,6 +391,8 @@ static const NSString *CameraAdjustingExposureContext;
     AVCaptureVideoOrientation orientation;
     switch ([UIDevice currentDevice].orientation) {
         case UIDeviceOrientationPortrait:
+        case UIDeviceOrientationFaceUp:
+        case UIDeviceOrientationFaceDown:
             orientation = AVCaptureVideoOrientationPortrait;
             break;
         case UIDeviceOrientationLandscapeRight:
@@ -407,6 +410,12 @@ static const NSString *CameraAdjustingExposureContext;
 
 
 - (void)writeImageToAssetsLibrary:(UIImage *)image {
+    
+//    NSData *data = UIImageJPEGRepresentation(image, 1.0);
+//    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"x.jpg"];
+//    NSLog(@"%@", path);
+//    [data writeToFile:path atomically:YES];
+    
     // Listing 6.13
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
         [PHAssetChangeRequest creationRequestForAssetFromImage:image];
@@ -545,8 +554,10 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
 
 #pragma mark -- AVCapturePhotoCaptureDelegate
 - (void)captureOutput:(AVCapturePhotoOutput *)output didFinishProcessingPhoto:(AVCapturePhoto *)photo error:(NSError *)error API_AVAILABLE(ios(11.0)){
-    if (photo.CGImageRepresentation) {
-        [self writeImageToAssetsLibrary:[UIImage imageWithCGImage:photo.CGImageRepresentation]];
+    if (photo.fileDataRepresentation) {
+        //UIImage data 不需要处理图片的方向问题， 如果CGImage 需要处理方向
+        UIImage *image = [UIImage imageWithData:photo.fileDataRepresentation scale:[UIScreen mainScreen].scale];
+        [self writeImageToAssetsLibrary:image];
     }
 }
 

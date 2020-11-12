@@ -28,6 +28,7 @@
 		25B79B26255161B500172BB7 /* AssetsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B79B25255161B500172BB7 /* AssetsLibrary.m */; };
 		25B79B30255161E900172BB7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B79B2F255161E900172BB7 /* ViewController.m */; };
 		25B79B3C2551620C00172BB7 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B79B3B2551620C00172BB7 /* CameraController.m */; };
+		25B79B4E255B8CE400172BB7 /* UIImage+BLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B79B4D255B8CE200172BB7 /* UIImage+BLAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		25B79B2F255161E900172BB7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		25B79B3A2551620C00172BB7 /* CameraController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
 		25B79B3B2551620C00172BB7 /* CameraController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
+		25B79B4C255B8CE200172BB7 /* UIImage+BLAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+BLAdditions.h"; sourceTree = "<group>"; };
+		25B79B4D255B8CE200172BB7 /* UIImage+BLAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BLAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 				25B79AE925515D8000172BB7 /* UIView+BLAdditions.m */,
 				25B79AEF25515DA400172BB7 /* NSFileManager+BLAdditions.h */,
 				25B79AF025515DA400172BB7 /* NSFileManager+BLAdditions.m */,
+				25B79B4C255B8CE200172BB7 /* UIImage+BLAdditions.h */,
+				25B79B4D255B8CE200172BB7 /* UIImage+BLAdditions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 				25B79B30255161E900172BB7 /* ViewController.m in Sources */,
 				25B79B3C2551620C00172BB7 /* CameraController.m in Sources */,
 				25B79B192551618100172BB7 /* CameraView.m in Sources */,
+				25B79B4E255B8CE400172BB7 /* UIImage+BLAdditions.m in Sources */,
 				25B79AEA25515D8000172BB7 /* NSTimer+BLAdditions.m in Sources */,
 				25B79AEB25515D8000172BB7 /* UIView+BLAdditions.m in Sources */,
 				25B79AA22551536200172BB7 /* SceneDelegate.m in Sources */,
