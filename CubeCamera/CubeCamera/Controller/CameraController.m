@@ -43,7 +43,7 @@
 }
 
 - (NSString *)sessionPreset {
-    return AVCaptureSessionPreset640x480;
+    return AVCaptureSessionPresetHigh;
 }
 
 - (BOOL)setupSessionOutputs:(NSError *__autoreleasing  _Nullable *)error{
@@ -74,6 +74,7 @@
     //用CMVideoFormatDescriptionGetDimensions函数通过格式描述信息来获取视频帧的维度，返回一个带有宽和高信息的CMVideoDimensions结构
     CMVideoDimensions dimensions = CMVideoFormatDescriptionGetDimensions(formationDescription);
     
+    //创建一个OpenGL ES贴图
     err = CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
                                                        _textureCache,
                                                        pixelBuffer,
@@ -81,13 +82,14 @@
                                                        GL_TEXTURE_2D,
                                                        GL_RGBA,
                                                        dimensions.height,
-                                                       dimensions.width,
+                                                       dimensions.height,   //.height作为宽高两个参数的值。希望在水平方向上剪辑视频，所以这是一个完美矩形
                                                        GL_BGRA,
                                                        GL_UNSIGNED_BYTE,
                                                        0,
                                                        &_cameraTexture);
     
     if (!err) {
+        //获取target和name的值。它们用来将贴图对象与旋转的小方块的表面进行合适的绑定
         GLenum target = CVOpenGLESTextureGetTarget(_cameraTexture);
         GLuint name = CVOpenGLESTextureGetName(_cameraTexture);
         [self.textureDelegate textureCreatedWithTarget:target
@@ -99,10 +101,12 @@
 }
 
 - (void)cleanupTextures{
+    //释放贴图
     if (_cameraTexture) {
         CFRelease(_cameraTexture);
         _cameraTexture = NULL;
     }
+    //刷新贴图缓存
     CVOpenGLESTextureCacheFlush(_textureCache, 0);
 }
 
