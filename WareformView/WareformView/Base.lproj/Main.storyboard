@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXu-jI-IkD">
+                                <rect key="frame" x="0.0" y="322" width="414" height="252"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CXq-yX-YOe" customClass="WaveformView">
+                                        <rect key="frame" x="8" y="15" width="398" height="88"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="88" id="T4n-2C-FLq"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lI-le-zKQ" customClass="WaveformView">
+                                        <rect key="frame" x="8" y="137" width="398" height="88"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="88" id="Nji-8K-2VG"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="CXq-yX-YOe" firstAttribute="top" secondItem="PXu-jI-IkD" secondAttribute="top" constant="15" id="2b1-wF-h99"/>
+                                    <constraint firstAttribute="bottom" secondItem="9lI-le-zKQ" secondAttribute="bottom" constant="27" id="34K-Fc-uDx"/>
+                                    <constraint firstAttribute="trailing" secondItem="CXq-yX-YOe" secondAttribute="trailing" constant="8" id="6Kt-ql-m8S"/>
+                                    <constraint firstAttribute="trailing" secondItem="9lI-le-zKQ" secondAttribute="trailing" constant="8" id="W41-7B-Hym"/>
+                                    <constraint firstItem="9lI-le-zKQ" firstAttribute="leading" secondItem="PXu-jI-IkD" secondAttribute="leading" constant="8" id="ex4-ox-dJk"/>
+                                    <constraint firstAttribute="height" constant="252" id="hiz-dW-9Oz"/>
+                                    <constraint firstItem="CXq-yX-YOe" firstAttribute="leading" secondItem="PXu-jI-IkD" secondAttribute="leading" constant="8" id="iSr-TM-zFx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PXu-jI-IkD" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="BOq-Q4-Ohu"/>
+                            <constraint firstItem="PXu-jI-IkD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gpZ-PD-6CV"/>
+                            <constraint firstItem="PXu-jI-IkD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pzt-o6-hfL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="beatWaveformView" destination="9lI-le-zKQ" id="uXM-yi-AFO"/>
+                        <outlet property="keysWaveformView" destination="CXq-yX-YOe" id="lV0-WN-sDI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
