@@ -8,6 +8,7 @@
 #import "WaveformView.h"
 #import "SampleDataProvider.h"
 #import "SampleDataFilter.h"
+#import <QuartzCore/QuartzCore.h>
 
 static const CGFloat THWidthScaling = 0.95;
 static const CGFloat THHeightScaling = 0.85;
