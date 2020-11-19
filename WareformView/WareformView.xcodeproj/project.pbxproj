@@ -20,6 +20,9 @@
 		2559C55425664FCD00F7381C /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2559C55325664FCD00F7381C /* UIColor+Additions.m */; };
 		2559C55A2566500100F7381C /* SampleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2559C5592566500100F7381C /* SampleDataProvider.m */; };
 		2559C5602566509300F7381C /* SampleDataFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2559C55F2566509300F7381C /* SampleDataFilter.m */; };
+		2559C56C25666EC500F7381C /* beat.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 2559C56A25666EC400F7381C /* beat.aiff */; };
+		2559C56D25666EC500F7381C /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2559C56B25666EC400F7381C /* keys.mp3 */; };
+		2559C5722566718A00F7381C /* possible.aac in Resources */ = {isa = PBXBuildFile; fileRef = 2559C5712566718A00F7381C /* possible.aac */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,9 @@
 		2559C5592566500100F7381C /* SampleDataProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleDataProvider.m; sourceTree = "<group>"; };
 		2559C55E2566509300F7381C /* SampleDataFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleDataFilter.h; sourceTree = "<group>"; };
 		2559C55F2566509300F7381C /* SampleDataFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleDataFilter.m; sourceTree = "<group>"; };
+		2559C56A25666EC400F7381C /* beat.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = beat.aiff; sourceTree = "<group>"; };
+		2559C56B25666EC400F7381C /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = keys.mp3; sourceTree = "<group>"; };
+		2559C5712566718A00F7381C /* possible.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = possible.aac; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,9 @@
 				2559C51E2566488600F7381C /* LaunchScreen.storyboard */,
 				2559C5212566488600F7381C /* Info.plist */,
 				2559C5222566488600F7381C /* main.m */,
+				2559C56A25666EC400F7381C /* beat.aiff */,
+				2559C5712566718A00F7381C /* possible.aac */,
+				2559C56B25666EC400F7381C /* keys.mp3 */,
 			);
 			path = WareformView;
 			sourceTree = "<group>";
@@ -268,7 +277,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2559C5202566488600F7381C /* LaunchScreen.storyboard in Resources */,
+				2559C56D25666EC500F7381C /* keys.mp3 in Resources */,
+				2559C56C25666EC500F7381C /* beat.aiff in Resources */,
 				2559C51D2566488600F7381C /* Assets.xcassets in Resources */,
+				2559C5722566718A00F7381C /* possible.aac in Resources */,
 				2559C51B2566488400F7381C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

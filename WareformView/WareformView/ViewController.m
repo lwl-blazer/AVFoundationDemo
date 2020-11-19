@@ -12,6 +12,8 @@
  */
 #import "ViewController.h"
 #import "WaveformView.h"
+#import "UIColor+Additions.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface ViewController ()
 
@@ -24,7 +26,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+//    NSURL *keysURL = [[NSBundle mainBundle] URLForResource:@"keys"
+//                                              withExtension:@"mp3"];
+    
+    NSURL *keysURL = [[NSBundle mainBundle] URLForResource:@"possible"
+                                              withExtension:@"aac"];
+    
+    NSURL *beatURL  = [[NSBundle mainBundle] URLForResource:@"beat"
+                                              withExtension:@"aiff"];
+    
+    self.keysWaveformView.waveColor = [UIColor blueWaveColor];
+    self.keysWaveformView.backgroundColor = [UIColor blueBackgroundColor];
+    self.keysWaveformView.asset = [AVURLAsset assetWithURL:keysURL];
+
+    self.beatWaveformView.waveColor = [UIColor greenWaveColor];
+    self.beatWaveformView.backgroundColor = [UIColor greenBackgroundColor];
+    self.beatWaveformView.asset = [AVURLAsset assetWithURL:beatURL];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 
