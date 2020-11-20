@@ -44,13 +44,12 @@
         for (NSUInteger j = 0; j < binSize; j ++) {
             // 当处理音频样本时，要时刻记得字节的顺序，所以要用到CFSwapInt16LittleToHost函数来确保样本是按主机内置的字节顺序处理的
             sampleBin[j] = CFSwapInt16LittleToHost(bytes[i + j]);
-            printf("%d\n", sampleBin[j]);
         }
-        
+        //当前箱子中的最大值
         SInt16 value = [self maxValueInArray:sampleBin ofSize:binSize];
         [filteredSamples addObject:@(value)];
         
-        if (value > maxSample) {
+        if (value > maxSample) { // 记录所有的箱子中的最大值
             maxSample = value;
         }
     }

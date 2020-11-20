@@ -16,8 +16,8 @@
     //异步载入
     [asset loadValuesAsynchronouslyForKeys:@[tracks]
                          completionHandler:^{
-       AVKeyValueStatus status = [asset statusOfValueForKey:tracks
-                                                      error:nil];
+        AVKeyValueStatus status = [asset statusOfValueForKey:tracks
+                                                       error:nil];
         NSData *sampleData = nil;
         
         if (status == AVKeyValueStatusLoaded) {
@@ -39,14 +39,14 @@
         return nil;
     }
     
-    AVAssetTrack *track = [[asset tracksWithMediaType:AVMediaTypeAudio] firstObject];
+    NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeAudio];
+    AVAssetTrack *track = [tracks firstObject];
     
-    //解压设置
+    //解压设置  AVAudioSettings.h文件中找到许多额外的键，它们可以对格式转换进行更详细的控制
     NSDictionary *outputSettings = @{AVFormatIDKey: @(kAudioFormatLinearPCM),
                                      AVLinearPCMIsBigEndianKey: @NO,
                                      AVLinearPCMIsFloatKey: @NO,
-                                     AVLinearPCMBitDepthKey: @(16)
-    };
+                                     AVLinearPCMBitDepthKey: @(16)};
     
     AVAssetReaderTrackOutput *trackOutput = [[AVAssetReaderTrackOutput alloc] initWithTrack:track outputSettings:outputSettings];
     [assetReader addOutput:trackOutput];

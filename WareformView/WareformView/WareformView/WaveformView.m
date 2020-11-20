@@ -86,17 +86,14 @@ static const CGFloat THHeightScaling = 0.85;
             [self setNeedsDisplay];
         }];
     }
-    
 }
 
 - (void)drawRect:(CGRect)rect {
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextScaleCTM(context, THWidthScaling, THHeightScaling);
+    
     CGFloat xOffset = self.bounds.size.width - (self.bounds.size.width * THWidthScaling);
-    
     CGFloat yOffset = self.bounds.size.height - (self.bounds.size.height * THHeightScaling);
-    
     CGContextTranslateCTM(context, xOffset / 2, yOffset / 2 );
     
     NSArray *filteredSamples = [self.filter filteredSamplesForSize:self.bounds.size];
