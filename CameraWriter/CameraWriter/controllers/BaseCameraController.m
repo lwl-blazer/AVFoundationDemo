@@ -115,25 +115,48 @@ NSString *const MovieCreateNotification = @"MovieCreated";
 }
 
 #pragma mark --
-
 - (AVCaptureDevice *)activeCamera{
     return self.activeVideoInput.device;
 }
 
+- (NSArray <AVCaptureDevice *> *)cameraWithPosition:(AVCaptureDevicePosition)position{
+    AVCaptureDeviceDiscoverySession *discoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera,
+                                                                                                                           AVCaptureDeviceTypeBuiltInTelephotoCamera,
+                                                                                                                           ] mediaType:AVMediaTypeVideo position:position];
+    return discoverySession.devices;
+}
+
+
 - (AVCaptureDevice *)inactiveCamera{
     AVCaptureDevice *device = nil;
+    if ([self activeCamera].position == AVCaptureDevicePositionBack) {
+        device = [self cameraWithPosition:AVCaptureDevicePositionFront].firstObject;
+    } else {
+        device = [self cameraWithPosition:AVCaptureDevicePositionBack].firstObject;
+    }
     return device;
 }
 
-- (BOOL)canSwitchCameras{
-    return self.cameraCount > 1;
-}
-
-- (NSUInteger)cameraCount {
-    return [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count];
-}
-
 - (BOOL)switchCameras{
+    NSError *error;
+    AVCaptureDevice *videoDevice = [self inactiveCamera];
+    AVCaptureDeviceInput *videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice
+                                                                             error:&error];
+    if (videoInput) {
+        [self.captureSession beginConfiguration];
+        [self.captureSession removeInput:self.activeVideoInput];
+        
+        if ([self.captureSession canAddInput:videoInput]) {
+            [self.captureSession addInput:videoInput];
+            self.activeVideoInput = videoInput;
+        } else {
+            [self.captureSession addInput:self.activeVideoInput];
+        }
+        [self.captureSession commitConfiguration];
+    } else {
+        [self.delegate deviceConfigurationFailedWithError:error];
+        return NO;
+    }
     return YES;
 }
 
