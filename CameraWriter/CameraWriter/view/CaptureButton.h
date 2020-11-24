@@ -9,7 +9,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, CaptureButtonMode){
+    CaptureButtonModePhoto = 0,
+    CaptureButtonModeVideo = 1
+};
+
 @interface CaptureButton : UIButton
+
++ (instancetype)captureButton;
++ (instancetype)captureButtonWithMode:(CaptureButtonMode)captureButtonMode;
+
+@property(nonatomic) CaptureButtonMode captureButtonMode;
 
 @end
 

@@ -6,10 +6,14 @@
 //
 
 #import <GLKit/GLKit.h>
+#import "ImageTarget.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PreviewView : GLKView
+@interface PreviewView : GLKView <ImageTarget>
+
+@property(strong, nonatomic) CIFilter *filter;
+@property(strong, nonatomic) CIContext *coreImageContext;
 
 @end
 

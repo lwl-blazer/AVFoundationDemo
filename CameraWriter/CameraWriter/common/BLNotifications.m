@@ -7,4 +7,4 @@
 
 #import "BLNotifications.h"
 
-NSString *const THFilterSelectionChangedNotification = @"filter_selection_changed";
+NSString *const BLFilterSelectionChangedNotification = @"filter_selection_changed";

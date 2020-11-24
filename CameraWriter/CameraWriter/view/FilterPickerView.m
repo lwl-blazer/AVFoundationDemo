@@ -6,15 +6,45 @@
 //
 
 #import "FilterPickerView.h"
+#import "BLNotifications.h"
+
+@interface FilterPickerView ()
+
+@property(nonatomic, strong) NSArray *thumbnails;
+@property(nonatomic, strong) UIScrollView *scrollView;
+
+@end
+
 
 @implementation FilterPickerView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (id)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+    }
+    return self;
 }
-*/
+
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+
+    }
+    return self;
+}
+
+- (void)setupView {
+    _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+    [self addSubview:_scrollView];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)buildScrubber:(NSNotification *)notification {
+
+}
+
 
 @end
