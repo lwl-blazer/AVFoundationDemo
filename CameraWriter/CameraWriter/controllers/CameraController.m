@@ -8,12 +8,13 @@
 #import "CameraController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MovieWriter.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 
-@interface CameraController () <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
+@interface CameraController () <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate, MovieWriterDelegate>
 
 @property(nonatomic, strong) AVCaptureVideoDataOutput *videoDataOutput;
 @property(nonatomic, strong) AVCaptureAudioDataOutput *audioDataOutput;
+@property(nonatomic, strong) MovieWriter *movieWriter;
 
 @end
 
@@ -44,6 +45,16 @@
     } else {
         return NO;
     }
+    
+    NSString *fileType = AVFileTypeQuickTimeMovie;
+    NSDictionary *videoSettings = [self.videoDataOutput recommendedVideoSettingsForAssetWriterWithOutputFileType:fileType];
+    
+    NSDictionary *audioSetting = [self.audioDataOutput recommendedAudioSettingsForAssetWriterWithOutputFileType:fileType];
+    
+    self.movieWriter = [[MovieWriter alloc] initWithVideoSettings:videoSettings audioSettings:audioSetting dispatchQueue:self.dispatchQueue];
+    
+    self.movieWriter.delegate = self;
+    
     return YES;
 }
 
@@ -52,15 +63,12 @@
 }
 
 - (void)startRecording {
-
-    // Listing 8.17
-
+    [self.movieWriter startWriting];
 }
 
 - (void)stopRecording {
-
-    // Listing 8.17
-
+    [self.movieWriter stopWriting];
+    self.recording = NO;
 }
 
 
@@ -70,6 +78,8 @@
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection {
 
+    [self.movieWriter processSampleBuffer:sampleBuffer];
+    
     if (captureOutput == self.videoDataOutput) {
       
         CVPixelBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -80,10 +90,18 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     }
 }
 
+//MovieWriterDelegate
 - (void)didWriteMovieAtURL:(NSURL *)outputURL {
-
-    // Listing 8.17
-    
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:outputURL];
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        if (success) {
+            NSLog(@"save video success");
+        } else {
+            NSLog(@"save video faile");
+            [self.delegate assetLibraryWriteFailedWithError:error];
+        }
+    }];
 }
 
 @end

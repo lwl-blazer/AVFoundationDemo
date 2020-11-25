@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^AssetsLibraryWriteCompletionHandler)(BOOL success, NSError *error);
 
-@interface AssetsLibrary : NSObject
+@interface BLAssetsLibrary : NSObject
 
 - (void)writeImage:(UIImage *)image completionHandler:(AssetsLibraryWriteCompletionHandler)completionHandler;
 - (void)writeVideoAtURL:(NSURL *)videoURL completionHandler:(AssetsLibraryWriteCompletionHandler)completionHandler;

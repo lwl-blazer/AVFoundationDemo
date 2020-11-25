@@ -133,11 +133,14 @@ static NSString *const VideoFilename = @"movie.mov";
         return;
     }
     
+    //媒体类型
     CMFormatDescriptionRef formatDesc = CMSampleBufferGetFormatDescription(sampleBuffer);
     CMMediaType mediaType = CMFormatDescriptionGetMediaType(formatDesc);
     if (mediaType == kCMMediaType_Video) {
         CMTime timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+        //第一次使用时
         if (self.firstSample) {
+            //启动，将样本的呈现时间作为源时间传递到方法中
             if ([self.assetWriter startWriting]) {
                 [self.assetWriter startSessionAtSourceTime:timestamp];
             } else {
@@ -149,34 +152,36 @@ static NSString *const VideoFilename = @"movie.mov";
         CVPixelBufferRef outputRenderBuffer = NULL;
         CVPixelBufferPoolRef pixelBufferPool = self.assetWriterInputPixelBufferAdaptor.pixelBufferPool;
         OSStatus err = CVPixelBufferPoolCreatePixelBuffer(NULL,
-                                                          pixelBufferPool, &outputRenderBuffer);
+                                                          pixelBufferPool,
+                                                          &outputRenderBuffer); //创建一个空的CVPixelBuffer 使用该buffer渲染筛选好的视频帧的输出
         if (err) {
             NSLog(@"Unable to obtain a pixel buffer from the pool.");
             return;
         }
         
         CVPixelBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-        
         CIImage *sourceImage = [CIImage imageWithCVPixelBuffer:imageBuffer options:nil];
-        
         [self.activeFilter setValue:sourceImage forKey:kCIInputImageKey];
         
         CIImage *filteredImage = self.activeFilter.outputImage;
-        
         if (!filteredImage) {
             filteredImage = sourceImage;
         }
         
+        //filteredImage 的输出渲染到outputRenderBuffer
         [self.ciContext render:filteredImage
                toCVPixelBuffer:outputRenderBuffer
                         bounds:filteredImage.extent colorSpace:self.colorSpace];
     
+        //是否可以接受更多数据
         if (self.assetWriterVideoInput.readyForMoreMediaData) {
+            // 将sample buffer 和 presenting time 附加到 pixel buffer  adaptor中
             if (![self.assetWriterInputPixelBufferAdaptor appendPixelBuffer:outputRenderBuffer withPresentationTime:timestamp]) {
                 NSLog(@"Error appending pixel buffer.");
             }
         }
         
+        //释放
         CVPixelBufferRelease(outputRenderBuffer);
     } else if (!self.firstSample && mediaType == kCMMediaType_Audio) {
         if (self.assetWriterAudioInput.isReadyForMoreMediaData) {
@@ -188,9 +193,21 @@ static NSString *const VideoFilename = @"movie.mov";
 }
 
 - (void)stopWriting {
-
-    // Listing 8.16
-    
+    self.isWriting = NO;
+    dispatch_async(self.dispatchQueue, ^{
+        //finishWritingWithCompletionHandler 来终止写入会话并关闭磁盘上的文件
+        [self.assetWriter finishWritingWithCompletionHandler:^{
+            // 判断资源写入器的状态
+            if (self.assetWriter.status == AVAssetWriterStatusCompleted) { // 成功写入
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSURL *fileURL = [self.assetWriter outputURL];
+                    [self.delegate didWriteMovieAtURL:fileURL];
+                });
+            } else {
+                NSLog(@"Failed to write movie:%@", self.assetWriter.error);
+            }
+        }];
+    });
 }
 
 - (NSURL *)outputURL {

@@ -5,19 +5,18 @@
 //  Created by luowailin on 2020/11/23.
 //
 
-#import "AssetsLibrary.h"
+#import "BLAssetsLibrary.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 
 static NSString *const ThumbnailCreatedNotification = @"ThumbnailCreated";
 
-@interface AssetsLibrary ()
+@interface BLAssetsLibrary ()
 
 
 @end
 
-
-@implementation AssetsLibrary
+@implementation BLAssetsLibrary
 
 - (void)writeImage:(UIImage *)image completionHandler:(AssetsLibraryWriteCompletionHandler)completionHandler{
     

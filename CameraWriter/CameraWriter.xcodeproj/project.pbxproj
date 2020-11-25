@@ -22,7 +22,7 @@
 		257D618F256B9258008784E3 /* CaptureButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D618E256B9258008784E3 /* CaptureButton.m */; };
 		257D6195256B9279008784E3 /* PreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D6194256B9279008784E3 /* PreviewView.m */; };
 		257D619B256B929B008784E3 /* FilterPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D619A256B929B008784E3 /* FilterPickerView.m */; };
-		257D61A2256B95BE008784E3 /* AssetsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D61A1256B95BE008784E3 /* AssetsLibrary.m */; };
+		257D61A2256B95BE008784E3 /* BLAssetsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D61A1256B95BE008784E3 /* BLAssetsLibrary.m */; };
 		257D61B4256B9713008784E3 /* BLError.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D61B3256B9713008784E3 /* BLError.m */; };
 		257D61BA256B984B008784E3 /* BLFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D61B9256B984B008784E3 /* BLFunctions.m */; };
 		257D61C0256B9A83008784E3 /* BLNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 257D61BF256B9A83008784E3 /* BLNotifications.m */; };
@@ -83,8 +83,8 @@
 		257D6194256B9279008784E3 /* PreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreviewView.m; sourceTree = "<group>"; };
 		257D6199256B929B008784E3 /* FilterPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterPickerView.h; sourceTree = "<group>"; };
 		257D619A256B929B008784E3 /* FilterPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterPickerView.m; sourceTree = "<group>"; };
-		257D61A0256B95BE008784E3 /* AssetsLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsLibrary.h; sourceTree = "<group>"; };
-		257D61A1256B95BE008784E3 /* AssetsLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsLibrary.m; sourceTree = "<group>"; };
+		257D61A0256B95BE008784E3 /* BLAssetsLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLAssetsLibrary.h; sourceTree = "<group>"; };
+		257D61A1256B95BE008784E3 /* BLAssetsLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLAssetsLibrary.m; sourceTree = "<group>"; };
 		257D61B2256B9713008784E3 /* BLError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLError.h; sourceTree = "<group>"; };
 		257D61B3256B9713008784E3 /* BLError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLError.m; sourceTree = "<group>"; };
 		257D61B8256B984B008784E3 /* BLFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLFunctions.h; sourceTree = "<group>"; };
@@ -218,8 +218,8 @@
 		257D619F256B9593008784E3 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				257D61A0256B95BE008784E3 /* AssetsLibrary.h */,
-				257D61A1256B95BE008784E3 /* AssetsLibrary.m */,
+				257D61A0256B95BE008784E3 /* BLAssetsLibrary.h */,
+				257D61A1256B95BE008784E3 /* BLAssetsLibrary.m */,
 				257D61B2256B9713008784E3 /* BLError.h */,
 				257D61B3256B9713008784E3 /* BLError.m */,
 				257D61B8256B984B008784E3 /* BLFunctions.h */,
@@ -397,7 +397,7 @@
 			files = (
 				257D6142256B8AA9008784E3 /* ViewController.m in Sources */,
 				257D61E8256B9E67008784E3 /* NSString+BLAdditions.m in Sources */,
-				257D61A2256B95BE008784E3 /* AssetsLibrary.m in Sources */,
+				257D61A2256B95BE008784E3 /* BLAssetsLibrary.m in Sources */,
 				257D61C0256B9A83008784E3 /* BLNotifications.m in Sources */,
 				257D6183256B922C008784E3 /* OverlayView.m in Sources */,
 				257D61EE256BA1C0008784E3 /* BaseCameraController.m in Sources */,

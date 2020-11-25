@@ -8,7 +8,6 @@
 #import "BaseCameraController.h"
 #import "NSFileManager+BLAdditions.h"
 #import "BLError.h"
-#import "AssetsLibrary.h"
 #import <AVFoundation/AVFoundation.h>
 
 NSString *const ThumbnailCreatedNotification = @"ThumbnailCreated";
@@ -20,7 +19,6 @@ NSString *const MovieCreateNotification = @"MovieCreated";
 @property(nonatomic, weak) AVCaptureDeviceInput *activeVideoInput;
 
 @property(nonatomic, strong) NSURL *outputURL;
-@property(nonatomic, strong) AssetsLibrary *library;
 
 @end
 
@@ -30,7 +28,6 @@ NSString *const MovieCreateNotification = @"MovieCreated";
 {
     self = [super init];
     if (self) {
-        _library = [[AssetsLibrary alloc] init];
         _dispatchQueue = dispatch_queue_create("com.tapharmonic.CaptureDispatchQueue", NULL);
     }
     return self;
