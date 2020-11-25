@@ -57,6 +57,7 @@
     } else {
         [self.controller stopRecording];
     }
+    sender.selected = !sender.selected;
 }
 
 - (BOOL)prefersStatusBarHidden{

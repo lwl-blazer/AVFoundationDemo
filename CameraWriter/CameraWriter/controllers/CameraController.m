@@ -64,6 +64,7 @@
 
 - (void)startRecording {
     [self.movieWriter startWriting];
+    self.recording = YES;
 }
 
 - (void)stopRecording {

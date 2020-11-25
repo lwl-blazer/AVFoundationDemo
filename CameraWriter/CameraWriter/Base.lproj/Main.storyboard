@@ -82,7 +82,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.53020654965753422" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="3h5-Pe-vty" secondAttribute="bottom" constant="23" id="KQm-2o-EEW"/>
                                             <constraint firstAttribute="height" constant="114" id="MaB-LM-Rxh"/>

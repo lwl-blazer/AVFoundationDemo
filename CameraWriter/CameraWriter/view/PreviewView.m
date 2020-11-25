@@ -61,6 +61,7 @@
     }
     
     [self display];
+    //渲染完清空
     [self.filter setValue:nil forKey:kCIInputImageKey];
 }
 

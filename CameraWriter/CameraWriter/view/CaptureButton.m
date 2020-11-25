@@ -17,9 +17,7 @@
 @end
 
 @interface CaptureButton ()
-
 @property (strong, nonatomic) CALayer *circleLayer;
-
 @end
 
 @implementation CaptureButton
@@ -106,6 +104,7 @@
         [self.circleLayer addAnimation:animationGroup forKey:@"scaleAndRadiusAnimation"];
     }
 }
+
 
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
