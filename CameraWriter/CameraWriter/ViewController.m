@@ -26,7 +26,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.controller = [[CameraController alloc] init];
     
     CGRect frame = self.view.bounds;

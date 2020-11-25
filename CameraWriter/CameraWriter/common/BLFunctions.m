@@ -33,13 +33,16 @@ CGAffineTransform BLTransformForDeviceOrientation(UIDeviceOrientation orientatio
             result = CGAffineTransformMakeRotation(M_PI);
             break;
         case UIDeviceOrientationPortraitUpsideDown:
-            result = CGAffineTransformMakeRotation(M_PI_2 *3);
-            
+            result = CGAffineTransformMakeRotation((M_PI_2 * 3));
+            break;
+
         case UIDeviceOrientationPortrait:
         case UIDeviceOrientationFaceUp:
         case UIDeviceOrientationFaceDown:
             result = CGAffineTransformMakeRotation(M_PI_2);
-        default:
+            break;
+
+        default: // Default orientation of landscape left
             result = CGAffineTransformIdentity;
             break;
     }

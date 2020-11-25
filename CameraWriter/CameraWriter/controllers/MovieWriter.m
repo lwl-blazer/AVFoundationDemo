@@ -91,6 +91,7 @@ static NSString *const VideoFilename = @"movie.mov";
         //YES 指明这个输入应该针对实时性进行优化
         self.assetWriterVideoInput.expectsMediaDataInRealTime = YES;
         
+        // 返回的是UIDeviceOrientationUnknown 导致没有设置正确的transform
         UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
         self.assetWriterVideoInput.transform = BLTransformForDeviceOrientation(orientation);
         
