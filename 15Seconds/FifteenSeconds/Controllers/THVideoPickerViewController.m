@@ -43,7 +43,6 @@ static NSString * const THVideoItemCellID = @"THVideoItemCell";
 	self.initialItemLoaded = NO;
 	self.tableView.backgroundColor = [UIColor colorWithWhite:0.206 alpha:1.000];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -114,7 +113,6 @@ static NSString * const THVideoItemCellID = @"THVideoItemCell";
 						NSIndexPath *reloadPath = [NSIndexPath indexPathForRow:i inSection:0];
 						[self.tableView reloadRowsAtIndexPaths:@[reloadPath] withRowAnimation:UITableViewRowAnimationNone];
 					});
-				} else {
 				}
 			}];
 			[items addObject:item];

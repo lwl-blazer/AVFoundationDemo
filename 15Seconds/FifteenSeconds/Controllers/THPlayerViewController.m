@@ -76,6 +76,12 @@ static const NSString *PlayerItemStatusContext;
     [self.titleView removeFromSuperview];
     self.autoplayContent = YES;
     self.player.rate = 0.0f;
+    
+    /** rate AVPlayer
+     * 速率播放  可以实现快、慢速播放
+     * 只支持 0.50, 0.67, 0.80, 1.0, 1.25, 1.50, and 2.0
+     * 0.0是暂停  1.0是正常
+     */
     self.playerItem = playerItem;
     self.playButton.selected = YES;
     if (playerItem) {
@@ -86,7 +92,6 @@ static const NSString *PlayerItemStatusContext;
 }
 
 - (void)prepareToPlay {
-
     if (!self.player) {
         self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
         self.playbackView.player = self.player;
@@ -206,10 +211,12 @@ static const NSString *PlayerItemStatusContext;
 }
 
 - (AVAudioMix *)buildAudioMixForPlayerItem:(AVPlayerItem *)playerItem level:(CGFloat)level {
+    //设置AVAudioMix参数
     NSMutableArray *params = [NSMutableArray array];
     for (AVPlayerItemTrack *track in playerItem.tracks) {
         if ([track.assetTrack.mediaType isEqualToString:AVMediaTypeAudio]) {
             AVMutableAudioMixInputParameters *parameters = [AVMutableAudioMixInputParameters audioMixInputParametersWithTrack:track.assetTrack];
+            //设置音量
             [parameters setVolume:level atTime:kCMTimeZero];
             [params addObject:parameters];
         }

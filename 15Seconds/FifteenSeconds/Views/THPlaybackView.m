@@ -42,8 +42,10 @@
 }
 
 - (void)setPlayer:(AVPlayer *)player {
-	[(AVPlayerLayer *)[self layer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-	[(AVPlayerLayer *)[self layer] setPlayer:player];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [(AVPlayerLayer *)[self layer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+        [(AVPlayerLayer *)[self layer] setPlayer:player];
+    });
 }
 
 @end

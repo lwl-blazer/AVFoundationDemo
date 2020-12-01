@@ -26,8 +26,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "THComposition.h"
 
+// 创建一个组合构建器
 @protocol THCompositionBuilder <NSObject>
 
-- (id <THComposition>)buildComposition;
+- (id <THComposition>)buildComposition; //创建AVComposition以及相关的轨道和轨道片段
 
 @end

@@ -77,7 +77,6 @@
         THTabBarItem *item = [self.tabBarItems objectAtIndex:i];
         THTabBarButton *button = [[THTabBarButton alloc] initWithImageName:item.imageName];
         item.button = button;
-
         [buttons addObject:button];
     }
 

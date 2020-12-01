@@ -39,7 +39,6 @@
 @implementation THAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	[[UIApplication sharedApplication] setStatusBarHidden:YES];
 
 	self.mainViewController = (THMainViewController *)self.window.rootViewController;
 

@@ -24,8 +24,7 @@
 //
 
 #import "THCompositionExporter.h"
-#import "UIAlertView+THAdditions.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 
 @interface THCompositionExporter ()
 @property (strong, nonatomic) id <THComposition> composition;
@@ -45,22 +44,55 @@
 
 - (void)beginExport {
 
-    // Listing 9.9
+    self.exportSession = [self.composition makeExportable];
+    self.exportSession.outputURL = [self exportURL];
+    self.exportSession.outputFileType = AVFileTypeMPEG4;
+    //开始导出过程
+    [self.exportSession exportAsynchronouslyWithCompletionHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            AVAssetExportSessionStatus status = self.exportSession.status;
+            if (status == AVAssetExportSessionStatusCompleted) {
+                [self writeExportedVideoToAssetsLibrary];
+            } else {
+                NSLog(@"Export Failed, the requested export failed");
+            }
+        });
+    }];
+    self.exporting = YES;
 
+    //轮询导出会话的状态来确定当前进度
+    [self monitorExportProgress];
 }
 
 - (void)monitorExportProgress {
-
-    // Listing 9.10
-
-    // Listing 9.11
-
+    double delayInSeconds = 0.1;
+    //短暂的延迟
+    int64_t delta = (int64_t)delayInSeconds * NSEC_PER_SEC;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delta);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^{
+        AVAssetExportSessionStatus status = self.exportSession.status;
+        if (status == AVAssetExportSessionStatusExporting) {
+            self.progress = self.exportSession.progress;
+            [self monitorExportProgress]; // 递归调用
+        } else {
+            self.exporting = NO;
+        }
+    });
 }
 
 - (void)writeExportedVideoToAssetsLibrary {
-
     // Listing 9.11
-    
+    NSURL *exportURL = self.exportSession.outputURL;
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:exportURL];
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        if (success) {
+            NSLog(@"save video success");
+            [[NSFileManager defaultManager] removeItemAtURL:exportURL error:nil];
+        } else {
+            NSLog(@"save video faile");
+        }
+    }];
 }
 
 - (NSURL *)exportURL {

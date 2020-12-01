@@ -35,7 +35,6 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "THAppDelegate.h"
-#import "UIAlertView+THAdditions.h"
 #import "THCompositionExporter.h"
 #import "THAudioItem.h"
 
@@ -47,8 +46,10 @@
 #define PROGRESS_KEYPATH        @"progress"
 
 @interface THMainViewController ()
+
 @property (strong, nonatomic) THCompositionBuilderFactory *factory;
 @property (strong, nonatomic) THCompositionExporter *exporter;
+
 @end
 
 @implementation THMainViewController
@@ -79,6 +80,7 @@
 	return YES;
 }
 
+#pragma mark -- THPlaybackMediator --
 - (void)loadMediaItem:(THMediaItem *)mediaItem {
 	[self.playerViewController loadInitialPlayerItem:[mediaItem makePlayable]];
 }
@@ -148,7 +150,6 @@
             [self.exporter removeObserver:self forKeyPath:PROGRESS_KEYPATH];
             [self.exporter removeObserver:self forKeyPath:EXPORTING_KEYPATH];
         }
-
     } else if ([keyPath isEqualToString:PROGRESS_KEYPATH]) {
         CGFloat progress = [change[NSKeyValueChangeNewKey] floatValue];
         DDProgressView *progressView = self.playerViewController.exportProgressView.progressView;

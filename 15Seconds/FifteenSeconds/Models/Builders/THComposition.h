@@ -27,7 +27,9 @@
 
 @protocol THComposition <NSObject>
 
+//可播放
 - (AVPlayerItem *)makePlayable;
+//可导出
 - (AVAssetExportSession *)makeExportable;
 
 @end

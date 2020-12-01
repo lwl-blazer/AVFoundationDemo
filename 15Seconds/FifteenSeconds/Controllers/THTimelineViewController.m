@@ -266,7 +266,6 @@
 	NSIndexPath *path = [NSIndexPath indexPathForItem:(items.count - 1) inSection:track];
 	[indexPaths addObject:path];
 
-
     [self.collectionView insertItemsAtIndexPaths:indexPaths];
 }
 
